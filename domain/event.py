@@ -4,7 +4,7 @@ class Event:
         self.__date = date
         self.__duration = duration
         self.__description = description
-        self.__participant_list = []
+        self.__attendants_list = []
 
     def get_id(self):
         return self.__id
