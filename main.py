@@ -1,2 +1,5 @@
+from tests.test_main import execute_all_tests
+
+
 if __name__ == '__main__':
-    print('New Commit from HomePC')
+    execute_all_tests()

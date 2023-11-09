@@ -1,10 +1,9 @@
 class Person:
-    attendance_list = []
-
     def __init__(self, person_id: str, name: str, address: str):
         self.__id = person_id
         self.__name = name
         self.__address = address
+        self.__attendance_list = []
 
     # Getters and Setters
     def get_id(self):
