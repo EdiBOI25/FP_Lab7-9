@@ -15,6 +15,9 @@ class Person:
     def get_address(self):
         return self.__address
 
+    def get_attendance_list(self):
+        return self.__attendance_list
+
     def set_id(self, new_id):
         self.__id = new_id
 
@@ -23,3 +26,6 @@ class Person:
 
     def set_address(self, new_address):
         self.__address = new_address
+
+    def set_attendance_list(self, new_list):
+        self.__attendance_list = new_list

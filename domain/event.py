@@ -18,6 +18,9 @@ class Event:
     def get_description(self):
         return self.__description
 
+    def get_attendants_list(self):
+        return self.__attendants_list
+
     def set_id(self, new_id):
         self.__id = new_id
 
@@ -29,3 +32,6 @@ class Event:
 
     def set_description(self, new_description):
         self.__description = new_description
+
+    def set_attendants_list(self, new_list):
+        self.__attendants_list = new_list
