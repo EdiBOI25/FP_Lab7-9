@@ -35,3 +35,9 @@ class Event:
 
     def set_attendants_list(self, new_list):
         self.__attendants_list = new_list
+
+    def add_attendant(self, person):
+        self.__attendants_list.append(person)
+
+    def remove_attendant(self, person):
+        self.__attendants_list.remove(person)

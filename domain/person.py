@@ -29,3 +29,9 @@ class Person:
 
     def set_attendance_list(self, new_list):
         self.__attendance_list = new_list
+
+    def add_attending_event(self, event):
+        self.__attendance_list.append(event)
+
+    def remove_attending_event(self, event):
+        self.__attendance_list.remove(event)
