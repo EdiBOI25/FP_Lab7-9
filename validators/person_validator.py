@@ -1,7 +1,7 @@
 from domain.person import Person
 
 
-def validate(person: Person):
+def validate_person(person: Person):
     """
     Valideaza datele unei persoane
     :param person: persoana

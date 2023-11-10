@@ -36,7 +36,7 @@ def update_person(person: Person) -> Person:
     :return:
     """
     try:
-        validate(person)
+        validate_person(person)
         return person
     except ValueError:
         pass
