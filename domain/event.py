@@ -1,5 +1,7 @@
 from datetime import date, time
 
+# TODO: adauga __eq__ si __str__(pt printare)
+
 
 class Event:
     def __init__(self, event_id: int, start_date: date, duration: time, description: str):
