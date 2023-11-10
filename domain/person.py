@@ -5,6 +5,20 @@ class Person:
         self.__address = address
         self.__attendance_list = []
 
+    def __eq__(self, other):
+        if self.__id != other.__id:
+            return False
+        if self.__name != other.__name:
+            return False
+        if self.__address != other.__address:
+            return False
+        if self.__attendance_list != other.__attendance_list:
+            return False
+        return True
+
+    def __str__(self):
+        return str(f'ID: {self.__id}, Nume: {self.__name}, Adresa: {self.__address}\nEvenimente la care participa: {self.__attendance_list}')
+
     # Getters and Setters
     def get_id(self):
         return self.__id
