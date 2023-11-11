@@ -1,7 +1,7 @@
 from validators.event_validator import *
 
 
-class PersonRepository:
+class EventRepository:
     def __init__(self):
         self.__event_list = []
 
