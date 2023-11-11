@@ -1,7 +1,5 @@
 from datetime import date, time
 
-# TODO: adauga __eq__ si __str__(pt printare)
-
 
 class Event:
     def __init__(self, event_id: int, start_date: date, duration: time, description: str):
@@ -10,6 +8,22 @@ class Event:
         self.__duration = duration
         self.__description = description
         self.__attendants_list = []
+
+    def __eq__(self, other):
+        if self.__id != other.__id:
+            return False
+        if self.__date != other.__date:
+            return False
+        if self.__duration != other.__duration:
+            return False
+        if self.__attendants_list != other.__attendants_list:
+            return False
+        if self.__description != other.__description:
+            return False
+        return True
+
+    def __str__(self):
+        return str(f'ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__duration}\nLista de participanti: {self.__attendants_list}')
 
     def get_id(self):
         return self.__id
