@@ -5,6 +5,13 @@ class PersonRepository:
     def __init__(self):
         self.__person_list = []
 
+    def __str__(self):
+        string = ''
+        for person in self.__person_list:
+            string += str(person)
+            string += '\n'
+        return string
+
     def get_person_list(self):
         return self.__person_list
 

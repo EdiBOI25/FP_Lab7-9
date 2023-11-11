@@ -5,6 +5,13 @@ class EventRepository:
     def __init__(self):
         self.__event_list = []
 
+    def __str__(self):
+        string = ''
+        for event in self.__event_list:
+            string += str(event)
+            string += '\n'
+        return string
+
     def get_event_list(self):
         return self.__event_list
 
