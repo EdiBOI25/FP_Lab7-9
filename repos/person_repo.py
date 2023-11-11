@@ -32,6 +32,7 @@ class PersonRepository:
         """
         if person in self.__person_list:
             self.__person_list.remove(person)
+            return
         raise ValueError(f'Persoana pe care vrei sa o stergi nu se afla in lista.')
 
     def search_person_by_id(self, idcode) -> Person:
