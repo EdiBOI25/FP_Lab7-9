@@ -1,8 +1,7 @@
 from validators.person_validator import *
 
 
-# TODO: test person_repo
-#   event_repo + test_event_repo
+# TODO: event_repo + test_event_repo
 
 class PersonRepository:
     def __init__(self):
@@ -17,7 +16,7 @@ class PersonRepository:
     def add_person(self, person: Person):
         """
         Adauga o persoana in lista
-        :param person:
+        :param person: Obiect de tip persoana
         """
         validate_person(person)
         for pers in self.__person_list:
@@ -28,7 +27,7 @@ class PersonRepository:
     def remove_person(self, person: Person):
         """
         Sterge o persoana din lista de persoane
-        :param person:
+        :param person: Obiect de tip persoana
         """
         if person in self.__person_list:
             self.__person_list.remove(person)
@@ -38,7 +37,7 @@ class PersonRepository:
     def search_person_by_id(self, idcode) -> Person:
         """
         Cauta o persoana dupa ID in lista de persoane si o returneaza
-        :param idcode:
+        :param idcode: ID-ul dupa care cautam persoana
         :return: persoana cautata
         """
         for person in self.__person_list:
@@ -50,8 +49,7 @@ class PersonRepository:
         """
         Modifica datele unei persoane
         :param new_person: Obiect persoana cu datele modificate
-        :param person: Persoana carei vrem sa ii modificam datele
-        :return:
+        :param person: Persoana careia vrem sa ii modificam datele
         """
         validate_person(new_person)
         if person not in self.__person_list:
