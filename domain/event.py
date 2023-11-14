@@ -10,6 +10,8 @@ class Event:
         self.__attendants_list = []
 
     def __eq__(self, other):
+        if not isinstance(other, Event):
+            return False
         if self.__id != other.__id:
             return False
         if self.__date != other.__date:

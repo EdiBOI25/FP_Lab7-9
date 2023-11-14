@@ -6,6 +6,8 @@ class Person:
         self.__attendance_list = []
 
     def __eq__(self, other):
+        if not isinstance(other, Person):
+            return False
         if self.__id != other.__id:
             return False
         if self.__name != other.__name:
