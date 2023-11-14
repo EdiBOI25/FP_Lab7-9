@@ -12,20 +12,10 @@ class Event:
     def __eq__(self, other):
         if not isinstance(other, Event):
             return False
-        if self.__id != other.__id:
-            return False
-        if self.__date != other.__date:
-            return False
-        if self.__duration != other.__duration:
-            return False
-        if self.__attendants_list != other.__attendants_list:
-            return False
-        if self.__description != other.__description:
-            return False
-        return True
+        return self.__id == other.get_id()
 
     def __str__(self):
-        return str(f'ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__duration}\nLista de participanti: {self.__attendants_list}')
+        return f'Event(ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__duration})\nLista de participanti: {self.__attendants_list}'
 
     def get_id(self):
         return self.__id

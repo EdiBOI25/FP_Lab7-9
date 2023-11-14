@@ -8,18 +8,10 @@ class Person:
     def __eq__(self, other):
         if not isinstance(other, Person):
             return False
-        if self.__id != other.__id:
-            return False
-        if self.__name != other.__name:
-            return False
-        if self.__address != other.__address:
-            return False
-        if self.__attendance_list != other.__attendance_list:
-            return False
-        return True
+        return self.__id == other.get_id()
 
     def __str__(self):
-        return str(f'ID: {self.__id}, Nume: {self.__name}, Adresa: {self.__address}\nEvenimente la care participa: {self.__attendance_list}')
+        return f'Person(ID: {self.__id}, Nume: {self.__name}, Adresa: {self.__address})\nEvenimente la care participa: {self.__attendance_list}'
 
     # Getters and Setters
     def get_id(self):
