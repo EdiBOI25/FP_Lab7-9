@@ -4,6 +4,7 @@ from validators.event_validator import *
 class EventRepository:
     def __init__(self):
         self.__event_list = []
+        self.__validator = EventValidator()
 
     def __str__(self):
         string = ''
@@ -18,15 +19,20 @@ class EventRepository:
     def __getitem__(self, index):
         return self.__event_list[index]
 
+    def is_id_in_list(self, idcode):
+        for event in self.__event_list:
+            if event.get_id() == idcode:
+                return True
+        return False
+
     def add_event(self, event: Event):
         """
         Adauga un eveniment in lista
         :param event: Obiect de tip Event
         """
-        validate_event(event)
-        for ev in self.__event_list:
-            if event.get_id() == ev.get_id():
-                raise ValueError(f'Evenimentul cu id-ul {event.get_id()} se afla deja in lista')
+        self.__validator.validate_event(event)
+        if self.is_id_in_list(event.get_id()):
+            raise ValueError(f'Evenimentul cu id-ul {event.get_id()} se afla deja in lista')
         self.__event_list.append(event)
 
     def remove_event(self, event: Event):
@@ -57,7 +63,7 @@ class EventRepository:
         :param event: Evenimentul caruia vrem sa ii modificam datele
         :return:
         """
-        validate_event(new_event)
+        self.__validator.validate_event(new_event)
         if event not in self.__event_list:
             raise ValueError(f'Evenimentul caruia vrei sa ii modifici datele nu se afla in lista.')
         index = self.__event_list.index(event)

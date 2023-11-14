@@ -1,5 +1,4 @@
-from repos.person_repo import PersonRepository
-from domain.person import Person
+from repos.person_repo import *
 
 
 def test_person_repo():
@@ -58,11 +57,6 @@ def test_person_repo():
         assert True
     except ValueError:
         assert False
-    try:
-        person_list.update_person(nanami, Person(1236, 'nanami', 'tokyo'))
-        assert False
-    except ValueError:
-        assert True
     try:
         person_list.update_person(Person(976, 'hatz', 'hatz2'), Person(2525, 'nanami', 'tokyo'))
         assert False

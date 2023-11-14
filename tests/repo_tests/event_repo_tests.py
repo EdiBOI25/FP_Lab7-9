@@ -1,5 +1,4 @@
-from repos.event_repo import EventRepository
-from domain.event import Event
+from repos.event_repo import *
 from datetime import date, time
 
 

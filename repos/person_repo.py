@@ -1,9 +1,16 @@
 from validators.person_validator import *
+# TODO: aici si la event_repo, modifica chestiile astfel incat sa se modifice chestii in functie de id
+#   de ex, la modify_person, sa nu mai transmiti persoana, ci ID-ul persoane pe care vrei sa o modifici
+#   apoi refa testele corespunzatoare
+#   ideea e sa nu poti modifica id-ul unei persoane/eveniment
+# TODO 2: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
+#   lista de eventuri/persoane din clasele person/event
 
 
 class PersonRepository:
     def __init__(self):
         self.__person_list = []
+        self.__validator = PersonValidator()
 
     def __str__(self):
         string = ''
@@ -18,15 +25,20 @@ class PersonRepository:
     def __getitem__(self, index):
         return self.__person_list[index]
 
+    def is_id_in_list(self, idcode):
+        for person in self.__person_list:
+            if person.get_id() == idcode:
+                return True
+        return False
+
     def add_person(self, person: Person):
         """
         Adauga o persoana in lista
         :param person: Obiect de tip persoana
         """
-        validate_person(person)
-        for pers in self.__person_list:
-            if person.get_id() == pers.get_id():
-                raise ValueError(f'Persoana cu id-ul {person.get_id()} se afla deja in lista')
+        self.__validator.validate_person(person)
+        if self.is_id_in_list(person.get_id()):
+            raise ValueError(f'Persoana cu id-ul {person.get_id()} se afla deja in lista')
         self.__person_list.append(person)
 
     def remove_person(self, person: Person):
@@ -56,7 +68,7 @@ class PersonRepository:
         :param new_person: Obiect persoana cu datele modificate
         :param person: Persoana careia vrem sa ii modificam datele
         """
-        validate_person(new_person)
+        self.__validator.validate_person(new_person)
         if person not in self.__person_list:
             raise ValueError(f'Persoana careia vrei sa ii modifici datele nu se afla in lista.')
         index = self.__person_list.index(person)
