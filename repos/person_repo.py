@@ -1,10 +1,7 @@
 from validators.person_validator import *
-# TODO: aici si la event_repo, modifica chestiile astfel incat sa se modifice chestii in functie de id
-#   de ex, la modify_person, sa nu mai transmiti persoana, ci ID-ul persoane pe care vrei sa o modifici
-#   apoi refa testele corespunzatoare
-#   ideea e sa nu poti modifica id-ul unei persoane/eveniment
 # TODO 2: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
 #   lista de eventuri/persoane din clasele person/event
+# TODO 3: refa testele astfel incat la erori sa faci assert err == 'Asta e eroarea'
 
 
 class PersonRepository:

@@ -54,36 +54,12 @@ def test_event_repo():
     # update_event test
     event_list.add_event(electric)
     try:
-        event_list.update_event(electric, Event(2525, date(2020, 12, 8), time(1, 20), 'Best festival ever222'))
+        event_list.update_event(2525, date(2020, 12, 8), time(1, 20), 'Best festival ever222')
         assert True
     except ValueError:
         assert False
     try:
-        event_list.update_event(electric, Event(1236, date(2020, 12, 8), time(1, 20), 'Best festival ever'))
+        event_list.update_event(976, date(2020, 12, 8), time(1, 20), 'Best festival ever')
         assert False
-    except ValueError:
-        assert True
-    try:
-        event_list.update_event(Event(976, date(2020, 12, 8), time(1, 20), 'Best festival ever'),
-                                Event(2525, date(2020, 12, 8), time(1, 20), 'Best festival ever'))
-        assert False
-    except ValueError:
-        assert True
-    try:
-        event_list.update_event(electric, untold)
-        assert False
-    except ValueError:
-        assert True
-    try:
-        event_list.update_event_id(electric, 1236)
-        assert False
-    except ValueError:
-        assert True
-    try:
-        event_list.update_event_id(event_list.search_event_by_id(1236), 4200)
-        event_list.update_event_date(event_list.search_event_by_id(4200), date(2021, 4, 1))
-        event_list.update_event_duration(event_list.search_event_by_id(4200), time(1, 40, 30))
-        event_list.update_event_description(event_list.search_event_by_id(4200), 'Worst festival ever :(')
-        assert True
-    except ValueError:
-        assert False
+    except ValueError as e:
+        assert str(e) == 'Evenimentul cu id-ul 976 nu se afla in lista.'

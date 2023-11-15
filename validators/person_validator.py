@@ -9,12 +9,12 @@ class PersonValidator:
         :param person: persoana
         Exceptions: daca datele sunt goale
         """
-        errors = ''
+        errors = []
         if person.get_id() == '':
-            errors += 'ID-ul nu poate fi gol'
+            errors.append('ID-ul nu poate fi gol')
         if person.get_name() == '':
-            errors += 'Numele nu poate fi gol'
+            errors.append('Numele nu poate fi gol')
         if person.get_address() == '':
-            errors += 'Adresa nu poate fi goala'
+            errors.append('Adresa nu poate fi goala')
         if errors:
             raise ValueError(', '.join(errors))

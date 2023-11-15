@@ -9,14 +9,14 @@ class EventValidator:
         :param event: evenimentul
         Exceptions: daca datele sunt goale
         """
-        errors = ''
+        errors = []
         if event.get_id() == '':
-            errors += 'ID-ul nu poate fi gol'
+            errors.append('ID-ul nu poate fi gol')
         if event.get_date() == '':
-            errors += 'Data nu poate fi goala'
+            errors.append('Data nu poate fi goala')
         if event.get_duration() == '':
-            errors += 'Durata nu poate fi goala'
+            errors.append('Durata nu poate fi goala')
         if event.get_description() == '':
-            errors += 'Descrierea nu poate fi goala'
+            errors.append('Descrierea nu poate fi goala')
         if errors:
             raise ValueError(', '.join(errors))

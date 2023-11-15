@@ -53,29 +53,17 @@ def test_person_repo():
     # update_person test
     person_list.add_person(nanami)
     try:
-        person_list.update_person(nanami, Person(2525, 'nanami', 'tokyo'))
+        person_list.update_person(2525, 'nanami', 'tokyo')
         assert True
     except ValueError:
         assert False
     try:
-        person_list.update_person(Person(976, 'hatz', 'hatz2'), Person(2525, 'nanami', 'tokyo'))
+        person_list.update_person(976, 'hatz', 'hatz2')
         assert False
     except ValueError:
         assert True
     try:
-        person_list.update_person(nanami, bob)
+        person_list.update_person(2525, '', '')
         assert False
-    except ValueError:
-        assert True
-    try:
-        person_list.update_person_id(nanami, 1236)
-        assert False
-    except ValueError:
-        assert True
-    try:
-        person_list.update_person_id(person_list.search_person_by_id(1236), 4200)
-        person_list.update_person_name(person_list.search_person_by_id(4200), 'joGOAT')
-        person_list.update_person_address(person_list.search_person_by_id(4200), 'Heaven')
-        assert True
-    except ValueError:
-        assert False
+    except ValueError as e:
+        assert str(e) == 'Numele nu poate fi gol, Adresa nu poate fi goala'
