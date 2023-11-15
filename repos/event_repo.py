@@ -13,7 +13,10 @@ class EventRepository:
             string += '\n'
         return string
 
-    def get_event_list(self):
+    def __len__(self):
+        return len(self.__event_list)
+
+    def get_all(self):
         return self.__event_list
 
     def __getitem__(self, index):

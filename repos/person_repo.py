@@ -1,8 +1,9 @@
 from validators.person_validator import *
-# TODO: repos nu trb sa aiba validatoare, de aia se ocupa partea de service :(
-# TODO 2: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
+# TODO: fa UI
+# TODO 2: extinde service
+# TODO 3: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
 #   lista de eventuri/persoane din clasele person/event
-# TODO 3: refa testele astfel incat la erori sa faci assert err == 'Asta e eroarea'
+# TODO 4: refa testele astfel incat la erori sa faci assert err == 'Asta e eroarea', adauga comentarii la functii
 
 
 class PersonRepository:
@@ -17,7 +18,10 @@ class PersonRepository:
             string += '\n'
         return string
 
-    def get_person_list(self):
+    def __len__(self):
+        return len(self.__person_list)
+
+    def get_all(self):
         return self.__person_list
 
     def __getitem__(self, index):
@@ -77,4 +81,3 @@ class PersonRepository:
                 return
 
         raise ValueError(f'Persoana cu id-ul {id_code} nu se afla in lista.')
-
