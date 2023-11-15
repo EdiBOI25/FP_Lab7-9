@@ -1,4 +1,5 @@
 from validators.person_validator import *
+# TODO: repos nu trb sa aiba validatoare, de aia se ocupa partea de service :(
 # TODO 2: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
 #   lista de eventuri/persoane din clasele person/event
 # TODO 3: refa testele astfel incat la erori sa faci assert err == 'Asta e eroarea'
