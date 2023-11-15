@@ -62,23 +62,21 @@ class PersonRepository:
                 return person
         raise ValueError(f'Nu exista persoana cu id-ul {idcode} in lista')
 
-    def update_person(self, person: Person, new_person: Person):
+    def update_person(self, id_code, new_name, new_address):
         """
-        Modifica datele unei persoane
-        :param new_person: Obiect persoana cu datele modificate
-        :param person: Persoana careia vrem sa ii modificam datele
+        Modifica datele persoanei cu id-ul id_code
+        :param id_code: id-ul persoanei careia vrem sa ii modificam datele
+        :param new_name: numele nou
+        :param new_address: adresa noua
+        :return:
         """
-        self.__validator.validate_person(new_person)
-        if person not in self.__person_list:
-            raise ValueError(f'Persoana careia vrei sa ii modifici datele nu se afla in lista.')
-        index = self.__person_list.index(person)
-        self.__person_list[index] = new_person
+        for person in self.__person_list:
+            if id_code == person.get_id():
+                new_person = Person(id_code, new_name, new_address)
+                self.__validator.validate_person(new_person)
+                index = self.__person_list.index(person)
+                self.__person_list[index] = new_person
+                return
 
-    def update_person_id(self, person: Person, new_id):
-        self.update_person(person, Person(new_id, person.get_name(), person.get_address()))
+        raise ValueError(f'Persoana cu id-ul {id_code} nu se afla in lista.')
 
-    def update_person_name(self, person: Person, new_name):
-        self.update_person(person, Person(person.get_id(), new_name, person.get_address()))
-
-    def update_person_address(self, person: Person, new_address):
-        self.update_person(person, Person(person.get_id(), person.get_name(), new_address))

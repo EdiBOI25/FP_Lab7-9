@@ -56,27 +56,21 @@ class EventRepository:
                 return event
         raise ValueError(f'Nu exista evenimentul cu id-ul {idcode} in lista')
 
-    def update_event(self, event: Event, new_event: Event):
+    def update_event(self, id_code, new_date, new_duration, new_description):
         """
-        Modifica datele unui eveniment
-        :param new_event: Obiect eveniment cu datele modificate
-        :param event: Evenimentul caruia vrem sa ii modificam datele
+        Modifica datele evenimentului cu id-ul id_code
+        :param id_code: id-ul evenimentului pe care vrem sa il modificam
+        :param new_date: data noua
+        :param new_duration: durata noua
+        :param new_description: descrierea noua
         :return:
         """
-        self.__validator.validate_event(new_event)
-        if event not in self.__event_list:
-            raise ValueError(f'Evenimentul caruia vrei sa ii modifici datele nu se afla in lista.')
-        index = self.__event_list.index(event)
-        self.__event_list[index] = new_event
+        for event in self.__event_list:
+            if id_code == event.get_id():
+                new_event = Event(id_code, new_date, new_duration, new_description)
+                self.__validator.validate_event(new_event)
+                index = self.__event_list.index(event)
+                self.__event_list[index] = new_event
+                return
 
-    def update_event_id(self, event: Event, new_id):
-        self.update_event(event, Event(new_id, event.get_date(), event.get_duration(), event.get_description()))
-
-    def update_event_date(self, event: Event, new_date):
-        self.update_event(event, Event(event.get_id(), new_date, event.get_duration(), event.get_description()))
-
-    def update_event_duration(self, event: Event, new_duration):
-        self.update_event(event, Event(event.get_id(), event.get_date(), new_duration, event.get_description()))
-
-    def update_event_description(self, event: Event, new_desc):
-        self.update_event(event, Event(event.get_id(), event.get_date(), event.get_duration(), new_desc))
+        raise ValueError(f'Evenimentul cu id-ul {id_code} nu se afla in lista.')
