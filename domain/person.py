@@ -10,7 +10,7 @@ class Person:
         return self.__id == other.get_id()
 
     def __str__(self):
-        return f'Person(ID: {self.__id}, Nume: {self.__name}, Adresa: {self.__address})\nEvenimente la care participa: {self.__attendance_list}'
+        return f'Person(ID: {self.__id}, Nume: {self.__name}, Adresa: {self.__address})'
 
     # Getters and Setters
     def get_id(self):
