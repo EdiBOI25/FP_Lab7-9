@@ -21,6 +21,7 @@ class UI:
     def __print_event_menu(self):
         print(self.__menus.get_event_menu())
 
+    # data validators
     @staticmethod
     def __read_valid_int(message):
         while True:
@@ -40,10 +41,24 @@ class UI:
             except ValueError:
                 print('String-ul nu poate fi gol')
 
-    @staticmethod
-    def __read_valid_date():
+    def __read_valid_date(self):
         while True:
-            pass
+            try:
+                year = self.__read_valid_int('An: ')
+                month = self.__read_valid_int('Luna: ')
+                day = self.__read_valid_int('Zi: ')
+                return date(year, month, day)
+            except ValueError as e:
+                print(str(e))
+
+    def __read_valid_time(self):
+        while True:
+            try:
+                hours = self.__read_valid_int('Ore: ')
+                minutes = self.__read_valid_int('Minute: ')
+                return time(hours, minutes)
+            except ValueError as e:
+                print(str(e))
 
     # person methods
     def __add_person(self):
@@ -66,6 +81,12 @@ class UI:
     # event methods
     def __add_event(self):
         start_date = self.__read_valid_date()
+        duration = self.__read_valid_time()
+        description = self.__read_nonempty_string('Descriere: ')
+        try:
+            self.__event_service.add_event(start_date, duration, description)
+        except Exception as e:
+            print(f'Something went wrong: {e}')
 
     def __remove_event(self):
         pass
@@ -102,6 +123,9 @@ class UI:
                 print(self.__event_service)
             else:
                 print('Optiune invalida')
+
+    def __manage_register(self):
+        pass
 
     def __reports(self):
         pass
