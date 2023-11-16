@@ -7,7 +7,6 @@ class Event:
         self.__date = start_date
         self.__duration = duration
         self.__description = description
-        self.__attendants_list = []
 
     def __eq__(self, other):
         if not isinstance(other, Event):
@@ -29,9 +28,6 @@ class Event:
     def get_description(self):
         return self.__description
 
-    def get_attendants_list(self):
-        return self.__attendants_list
-
     def set_id(self, new_id: int):
         self.__id = new_id
 
@@ -43,12 +39,3 @@ class Event:
 
     def set_description(self, new_description: str):
         self.__description = new_description
-
-    def set_attendants_list(self, new_list):
-        self.__attendants_list = new_list
-
-    def add_attendant(self, person):
-        self.__attendants_list.append(person)
-
-    def remove_attendant(self, person):
-        self.__attendants_list.remove(person)

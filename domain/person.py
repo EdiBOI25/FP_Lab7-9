@@ -3,7 +3,6 @@ class Person:
         self.__id = person_id
         self.__name = name
         self.__address = address
-        self.__attendance_list = []
 
     def __eq__(self, other):
         if not isinstance(other, Person):
@@ -23,9 +22,6 @@ class Person:
     def get_address(self):
         return self.__address
 
-    def get_attendance_list(self):
-        return self.__attendance_list
-
     def set_id(self, new_id: int):
         self.__id = new_id
 
@@ -34,12 +30,3 @@ class Person:
 
     def set_address(self, new_address: str):
         self.__address = new_address
-
-    def set_attendance_list(self, new_list):
-        self.__attendance_list = new_list
-
-    def add_attending_event(self, event):
-        self.__attendance_list.append(event)
-
-    def remove_attending_event(self, event):
-        self.__attendance_list.remove(event)
