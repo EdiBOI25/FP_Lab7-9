@@ -9,6 +9,9 @@ class PersonService:
     def get_all(self):
         return self.__repo.get_all()
 
+    def __str__(self):
+        return str(self.__repo)
+
     def add_person(self, name, address):
         idcode = general_utils.generate_id(self.__repo.get_all())
         self.__repo.add_person(Person(idcode, name, address))
