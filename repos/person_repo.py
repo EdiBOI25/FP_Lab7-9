@@ -1,9 +1,4 @@
 from validators.person_validator import *
-# TODO: fa UI
-# TODO 2: extinde service
-# TODO 3: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
-#   lista de eventuri/persoane din clasele person/event
-# TODO 4: refa testele astfel incat la erori sa faci assert err == 'Asta e eroarea', adauga comentarii la functii
 
 
 class PersonRepository:
