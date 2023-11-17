@@ -1,6 +1,5 @@
 from tests.test_main import execute_all_tests
 from ui.ui_class import UI
-# TODO 0: fa teste
 # TODO: fa UI
 # TODO 2: extinde service
 # TODO 3: fa un "register" repo care sa contina o lista de perechi de genu (id_client, id_event) si sterge
