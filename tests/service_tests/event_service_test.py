@@ -53,3 +53,4 @@ def test_event_service():
         assert len(event_service.get_all()) == 1
     except ValueError:
         assert False
+
