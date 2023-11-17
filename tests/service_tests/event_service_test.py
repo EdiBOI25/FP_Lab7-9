@@ -5,6 +5,7 @@ from datetime import date, time
 def test_event_service():
     event_service = EventService()
     assert event_service.get_all() == []
+    # add_event
     try:
         event_service.add_event(date(2020, 2, 4), time(1, 20), 'Random description')
         assert event_service.get_all()[0] == Event(1, date(2020, 2, 4), time(1, 20), 'Random description')
@@ -21,3 +22,4 @@ def test_event_service():
         assert len(event_service.get_all()) == 2
     except ValueError:
         assert False
+    assert event_service.search_by_id(2) == Event(2, date(2023, 1, 25), time(5, 30), 'Birthday')

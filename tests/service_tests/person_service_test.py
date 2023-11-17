@@ -3,6 +3,7 @@ from service.person_service import *
 
 def test_person_service():
     person_service = PersonService()
+    # add_person
     assert person_service.get_all() == []
     try:
         person_service.add_person('Bob', 'Pitesti')
@@ -21,6 +22,8 @@ def test_person_service():
     except ValueError:
         assert False
     assert person_service.search_by_id(2) == Person(2, 'Bob2', 'Brasov')
+
+    # update person
     try:
         person_service.update_person(3, 'Emanuel2', 'Brasov, Coresi')
         assert False
@@ -36,6 +39,8 @@ def test_person_service():
         assert person_service.search_by_id(2) == Person(2, 'Emanuel2', 'Brasov, Coresi')
     except ValueError:
         assert False
+
+    # remove_person
     try:
         person_service.remove_person(3)
         assert False
