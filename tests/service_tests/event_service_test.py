@@ -8,7 +8,7 @@ def test_event_service():
     try:
         event_service.add_event(date(2020, 2, 4), time(1, 20), 'Random description')
         assert event_service.get_all()[0] == Event(1, date(2020, 2, 4), time(1, 20), 'Random description')
-    except ValueError as e:
+    except ValueError:
         assert False
     try:
         event_service.add_event('', '', '')

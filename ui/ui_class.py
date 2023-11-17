@@ -66,6 +66,7 @@ class UI:
         address = self.__read_nonempty_string('Adresa: ')
         try:
             self.__person_service.add_person(name, address)
+            print(f'Persoana a fost adaugata cu succes!')
         except Exception as e:
             print(f'Something went wrong: {e}')
 
@@ -85,6 +86,7 @@ class UI:
         description = self.__read_nonempty_string('Descriere: ')
         try:
             self.__event_service.add_event(start_date, duration, description)
+            print(f'Evenimentul a fost adaugat cu succes!')
         except Exception as e:
             print(f'Something went wrong: {e}')
 
@@ -105,7 +107,10 @@ class UI:
             if option == 1:
                 self.__add_person()
             elif option == 9:
-                print(self.__person_service)
+                if self.__person_service.get_all():
+                    print(self.__person_service)
+                else:
+                    print('Lista de persoane este goala.')
             elif option == 0:
                 return
             else:
@@ -120,7 +125,10 @@ class UI:
             elif option == 0:
                 return
             elif option == 9:
-                print(self.__event_service)
+                if self.__event_service.get_all():
+                    print(self.__event_service)
+                else:
+                    print('Lista de evenimente este goala.')
             else:
                 print('Optiune invalida')
 
@@ -139,7 +147,14 @@ class UI:
             elif option == 2:
                 self.__manage_event()
             elif option == 9:
-                print('Persoane:\n', self.__person_service, '\nEvenimente:\n', self.__event_service)
+                if self.__person_service.get_all():
+                    print('Persoane:\n', self.__person_service)
+                else:
+                    print('Lista de persoane este goala.')
+                if self.__event_service.get_all():
+                    print('Evenimente:\n', self.__event_service)
+                else:
+                    print('Lista de evenimente este goala.')
             elif option == 0:
                 print('Bye bye!')
                 return
