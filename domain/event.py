@@ -14,7 +14,7 @@ class Event:
         return self.__id == other.get_id()
 
     def __str__(self):
-        return f'Event(ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__duration})'
+        return f'Event(ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__description})'
 
     def get_id(self):
         return self.__id
