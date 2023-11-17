@@ -46,7 +46,6 @@ def test_event_service():
         event_service.remove_event(3)
         assert False
     except ValueError as e:
-        print(e)
         assert str(e) == 'Nu exista evenimentul cu id-ul 3 in lista'
     try:
         event_service.remove_event(2)
