@@ -21,6 +21,36 @@ class RegistrationRepo:
     def __getitem__(self, index):
         return self.__registration_list[index]
 
+    def __is_person_in_list(self, person_id):
+        for reg in self.__registration_list:
+            if reg.get_person() == person_id:
+                return True
+        return False
+
+    def __is_event_in_list(self, event_id):
+        for reg in self.__registration_list:
+            if reg.get_event() == event_id:
+                return True
+        return False
+
+    def get_events_of_person(self, person_id):
+        if not self.__is_person_in_list(person_id):
+            raise ValueError(f'Persoana cu ID-ul {person_id} nu s-a inscris la niciun eveniment')
+        result = []
+        for reg in self.__registration_list:
+            if reg.get_person() == person_id:
+                result.append(reg.get_event())
+        return result
+
+    def get_persons_of_event(self, event_id):
+        if not self.__is_event_in_list(event_id):
+            raise ValueError(f'Evenimentul cu ID-ul {event_id} nu are persoane inscrise')
+        result = []
+        for reg in self.__registration_list:
+            if reg.get_event() == event_id:
+                result.append(reg.get_person())
+        return result
+
     def add_registration(self, person_id, event_id):
         new_registration = Registration(person_id, event_id)
         self.__registration_list.append(new_registration)
