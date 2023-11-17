@@ -68,16 +68,39 @@ class UI:
             self.__person_service.add_person(name, address)
             print(f'Persoana a fost adaugata cu succes!')
         except Exception as e:
-            print(f'Something went wrong: {e}')
+            print(e)
 
     def __remove_person(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            self.__person_service.remove_person(idcode)
+            print('Persoana a fost stersa cu succes!')
+        except Exception as e:
+            print(e)
 
     def __update_person(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            person = self.__person_service.search_by_id(idcode)
+            print(f'Persoana careia vrei sa ii modifici datele este {person}')
+        except Exception as e:
+            print(e)
+            return
+        new_name = self.__read_nonempty_string('Numele nou: ')
+        new_address = self.__read_nonempty_string('Adresa noua: ')
+        try:
+            self.__person_service.update_person(idcode, new_name, new_address)
+            print(f'Datele persoanei au fost modificate: {self.__person_service.search_by_id(idcode)}')
+        except Exception as e:
+            print(e)
 
     def __find_person(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            person = self.__person_service.search_by_id(idcode)
+            print(f'Persoana cautata este {person}')
+        except Exception as e:
+            print(e)
 
     # event methods
     def __add_event(self):
@@ -91,13 +114,37 @@ class UI:
             print(f'Something went wrong: {e}')
 
     def __remove_event(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            self.__event_service.remove_event(idcode)
+            print('Evenimentul a fost sters cu succes!')
+        except Exception as e:
+            print(e)
 
     def __update_event(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            event = self.__event_service.search_by_id(idcode)
+            print(f'Evenimentul caruia vrei sa ii modifici datele este {event}')
+        except Exception as e:
+            print(e)
+            return
+        new_date = self.__read_valid_date()
+        new_duration = self.__read_valid_time()
+        new_description = self.__read_nonempty_string('Descriere: ')
+        try:
+            self.__event_service.update_event(idcode, new_date, new_duration, new_description)
+            print(f'Datele evenimentului au fost modificate: {self.__event_service.search_by_id(idcode)}')
+        except Exception as e:
+            print(e)
 
     def __find_event(self):
-        pass
+        idcode = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            event = self.__event_service.search_by_id(idcode)
+            print(f'Evenimentul cautat este: {event}')
+        except Exception as e:
+            print(e)
 
     # main UI
     def __manage_person(self):
@@ -106,6 +153,12 @@ class UI:
             option = self.__read_valid_int('Introdu optiunea: ')
             if option == 1:
                 self.__add_person()
+            elif option == 2:
+                self.__update_person()
+            elif option == 3:
+                self.__remove_person()
+            elif option == 4:
+                self.__find_person()
             elif option == 9:
                 if self.__person_service.get_all():
                     print(self.__person_service)
@@ -122,6 +175,12 @@ class UI:
             option = self.__read_valid_int('Introdu optiunea: ')
             if option == 1:
                 self.__add_event()
+            elif option == 2:
+                self.__update_event()
+            elif option == 3:
+                self.__remove_event()
+            elif option == 4:
+                self.__find_event()
             elif option == 0:
                 return
             elif option == 9:
@@ -160,4 +219,3 @@ class UI:
                 return
             else:
                 print('Optiune invalida')
-

@@ -23,3 +23,34 @@ def test_event_service():
     except ValueError:
         assert False
     assert event_service.search_by_id(2) == Event(2, date(2023, 1, 25), time(5, 30), 'Birthday')
+
+    # update_event
+    try:
+        event_service.update_event(3, date(1999, 1, 25), time(5, 30), 'Birthday')
+        assert False
+    except ValueError as e:
+        assert str(e) == 'Evenimentul cu id-ul 3 nu se afla in lista.'
+    try:
+        event_service.update_event(2, '', time(5, 30), 'Birthday')
+        assert False
+    except ValueError as e:
+        assert str(e) == 'Data nu poate fi goala'
+    try:
+        event_service.update_event(2, date(1999, 1, 25), time(5, 30), 'Birthday')
+        assert event_service.search_by_id(2) == Event(2, date(1999, 1, 25), time(5, 30), 'Birthday')
+    except ValueError:
+        assert False
+
+    # remove_event
+    try:
+        event_service.remove_event(3)
+        assert False
+    except ValueError as e:
+        print(e)
+        assert str(e) == 'Nu exista evenimentul cu id-ul 3 in lista'
+    try:
+        event_service.remove_event(2)
+        assert len(event_service.get_all()) == 1
+    except ValueError:
+        assert False
+
