@@ -22,7 +22,7 @@ class EventRepository:
     def __getitem__(self, index):
         return self.__event_list[index]
 
-    def __is_id_in_list(self, idcode):
+    def is_id_in_list(self, idcode):
         for event in self.__event_list:
             if event.get_id() == idcode:
                 return True
@@ -34,7 +34,7 @@ class EventRepository:
         :param event: Obiect de tip Event
         """
         self.__validator.validate_event(event)
-        if self.__is_id_in_list(event.get_id()):
+        if self.is_id_in_list(event.get_id()):
             raise ValueError(f'Evenimentul cu id-ul {event.get_id()} se afla deja in lista')
         self.__event_list.append(event)
 

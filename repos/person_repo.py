@@ -22,7 +22,7 @@ class PersonRepository:
     def __getitem__(self, index):
         return self.__person_list[index]
 
-    def __is_id_in_list(self, idcode):
+    def is_id_in_list(self, idcode):
         for person in self.__person_list:
             if person.get_id() == idcode:
                 return True
@@ -34,7 +34,7 @@ class PersonRepository:
         :param person: Obiect de tip persoana
         """
         self.__validator.validate_person(person)
-        if self.__is_id_in_list(person.get_id()):
+        if self.is_id_in_list(person.get_id()):
             raise ValueError(f'Persoana cu id-ul {person.get_id()} se afla deja in lista')
         self.__person_list.append(person)
 
