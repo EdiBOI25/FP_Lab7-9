@@ -10,7 +10,7 @@ class Registration:
                 self.__event_id == self.get_event())
 
     def __str__(self):
-        return f'Registration(PersonID:{self.__person_id}, EventID:{self.__event_id})'
+        return f'Registration(PersonID: {self.__person_id}, EventID: {self.__event_id})'
 
     def get_person(self):
         return self.__person_id
