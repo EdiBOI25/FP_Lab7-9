@@ -4,6 +4,7 @@ class Menus:
     MENIU PRINCIPAL
     1. Gestioneaza lista de persoane
     2. Gestioneaza lista de evenimente
+    3. Gestioneaza inscrierile
     9. Printeaza listele
     0. Iesi
     '''
@@ -25,6 +26,15 @@ class Menus:
     9. Afiseaza lista de evenimente
     0. Inapoi
     '''
+        self.__registration_menu = '''
+    GESTIONEAZA INSCRIERILE
+    1. Inscrie persoana la eveniment
+    2. Sterge o inscriere
+    3. Afiseaza evenimentele la care este inscrisa o persoana
+    4. Afiseaza persoanele care sunt inscrise la un eveniment
+    9. Afiseaza lista de inregistrari
+    0. Inapoi
+        '''
 
     def get_main_menu(self):
         return self.__main_menu
@@ -34,3 +44,6 @@ class Menus:
 
     def get_event_menu(self):
         return self.__event_menu
+
+    def get_registration_menu(self):
+        return self.__registration_menu

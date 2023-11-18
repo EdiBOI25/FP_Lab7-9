@@ -1,5 +1,6 @@
 from service.event_service import EventService
 from service.person_service import PersonService
+from service.registration_service import RegistrationService
 from ui.menus import Menus
 from datetime import date, time
 
@@ -8,7 +9,7 @@ class UI:
     def __init__(self):
         self.__person_service = PersonService()
         self.__event_service = EventService()
-        # self.__register_service = RegisterService()
+        self.__registration_service = RegistrationService()
         self.__menus = Menus()
 
     # menu printers
@@ -20,6 +21,9 @@ class UI:
 
     def __print_event_menu(self):
         print(self.__menus.get_event_menu())
+
+    def __print_registration_menu(self):
+        print(self.__menus.get_registration_menu())
 
     # data validators
     @staticmethod
@@ -146,6 +150,43 @@ class UI:
         except Exception as e:
             print(e)
 
+    # registration methods
+    def __add_registration(self):
+        person_id = self.__read_valid_int('ID-ul persoanei: ')
+        event_id = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            self.__person_service.search_by_id(person_id)
+            self.__event_service.search_by_id(event_id)
+            self.__registration_service.add_registration(person_id, event_id)
+            print(f'Inscriere cu succes!')
+        except ValueError as e:
+            print(e)
+
+    def __remove_registration(self):
+        person_id = self.__read_valid_int('ID-ul persoanei: ')
+        event_id = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            self.__registration_service.remove_registration(person_id, event_id)
+            print(f'Inscriere stearsa cu succes!')
+        except ValueError as e:
+            print(e)
+
+    def __find_events_of_person(self):
+        person_id = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            result = self.__registration_service.get_events_of_person(person_id)
+            print(f'Persoana cu ID-ul {person_id} este inscrisa la evenimentele: {result}')
+        except ValueError as e:
+            print(e)
+
+    def __find_persons_of_event(self):
+        event_id = self.__read_valid_int('ID-ul evenimentului: ')
+        try:
+            result = self.__registration_service.get_persons_of_event(event_id)
+            print(f'La evenimentul cu ID-ul {event_id} sunt inscrise persoanele: {result}')
+        except ValueError as e:
+            print(e)
+
     # main UI
     def __manage_person(self):
         while True:
@@ -192,7 +233,26 @@ class UI:
                 print('Optiune invalida')
 
     def __manage_register(self):
-        pass
+        while True:
+            self.__print_registration_menu()
+            option = self.__read_valid_int('Introdu optiunea: ')
+            if option == 1:
+                self.__add_registration()
+            elif option == 2:
+                self.__remove_registration()
+            elif option == 3:
+                self.__find_events_of_person()
+            elif option == 4:
+                self.__find_persons_of_event()
+            elif option == 0:
+                return
+            elif option == 9:
+                if self.__registration_service.get_all():
+                    print(self.__registration_service)
+                else:
+                    print('Lista de inscrieri este goala.')
+            else:
+                print('Optiune invalida')
 
     def __reports(self):
         pass
@@ -205,6 +265,8 @@ class UI:
                 self.__manage_person()
             elif option == 2:
                 self.__manage_event()
+            elif option == 3:
+                self.__manage_register()
             elif option == 9:
                 if self.__person_service.get_all():
                     print('Persoane:\n', self.__person_service)
@@ -214,6 +276,10 @@ class UI:
                     print('Evenimente:\n', self.__event_service)
                 else:
                     print('Lista de evenimente este goala.')
+                if self.__registration_service.get_all():
+                    print('Inscrieri:\n', self.__registration_service)
+                else:
+                    print('Lista de inscrieri este goala.')
             elif option == 0:
                 print('Bye bye!')
                 return
