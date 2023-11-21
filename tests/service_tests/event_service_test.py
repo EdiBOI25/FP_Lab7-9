@@ -53,3 +53,12 @@ def test_event_service():
     except ValueError:
         assert False
 
+    # random_events
+    random.seed(25)
+    event_service.add_random_events(20)
+    assert event_service.search_by_id(5).get_date() == date(2018, 10, 26)
+    assert len(event_service.get_all()) == 14
+    random.seed(100)
+    event_service.add_random_events(20)
+    assert event_service.search_by_id(14).get_duration() == time(16, 8)
+    assert len(event_service.get_all()) == 19

@@ -1,5 +1,8 @@
+import string
+
 from repos.person_repo import *
 from utils import general_utils
+import random
 
 
 class PersonService:
@@ -25,3 +28,39 @@ class PersonService:
 
     def update_person(self, idcode, new_name, new_address):
         self.__repo.update_person(idcode, new_name, new_address)
+
+    @staticmethod
+    def __random_name(max_length):
+        """
+        Generates random name
+        :param max_length: Maximum length of name
+        :return:
+        """
+        name = ''
+        name += random.choice(string.ascii_uppercase)
+        for i in range(max_length - 1):
+            name += random.choice(string.ascii_lowercase)
+        return name
+
+    def __random_address(self, max_length):
+        """
+        Generates random address
+        :param max_length: Maximum length of address
+        :return:
+        """
+        address = self.__random_name(max_length)
+        address += ' '
+        address += str(random.randint(1, 100))
+        return address
+
+    def add_random_persons(self, limit):
+        """
+        Adds a random number of persons with random names and addresses
+        :param limit: The max number of persons to add
+        :return:
+        """
+        num = random.randint(1, limit)
+        for i in range(1, num+1):
+            name = self.__random_name(20)
+            address = self.__random_address(50)
+            self.add_person(name, address)

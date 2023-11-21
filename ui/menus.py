@@ -14,6 +14,7 @@ class Menus:
     2. Modifica persoana
     3. Sterge persoana
     4. Cauta persoana dupa ID
+    5. Adauga un numar random de persoane random
     9. Afiseaza lista de persoane
     0. Inapoi
     '''
@@ -23,6 +24,7 @@ class Menus:
     2. Modifica eveniment
     3. Sterge eveniment
     4. Cauta eveniment dupa ID
+    5. Adauga un numar random de evenimente random
     9. Afiseaza lista de evenimente
     0. Inapoi
     '''

@@ -106,6 +106,14 @@ class UI:
         except Exception as e:
             print(e)
 
+    def __add_random_person(self):
+        while True:
+            max_num = self.__read_valid_int('Numarul maxim de persoane (numar pozitiv): ')
+            if max_num > 0:
+                break
+            print('Ai introdus un nr negativ. Mai incearca')
+        self.__person_service.add_random_persons(max_num)
+
     # event methods
     def __add_event(self):
         start_date = self.__read_valid_date()
@@ -149,6 +157,14 @@ class UI:
             print(f'Evenimentul cautat este: {event}')
         except Exception as e:
             print(e)
+
+    def __add_random_events(self):
+        while True:
+            max_num = self.__read_valid_int('Numarul maxim de evenimente (numar pozitiv): ')
+            if max_num > 0:
+                break
+            print('Ai introdus un nr negativ. Mai incearca')
+        self.__event_service.add_random_events(max_num)
 
     # registration methods
     def __add_registration(self):
@@ -200,6 +216,8 @@ class UI:
                 self.__remove_person()
             elif option == 4:
                 self.__find_person()
+            elif option == 5:
+                self.__add_random_person()
             elif option == 9:
                 if self.__person_service.get_all():
                     print(self.__person_service)
@@ -222,6 +240,8 @@ class UI:
                 self.__remove_event()
             elif option == 4:
                 self.__find_event()
+            elif option == 5:
+                self.__add_random_events()
             elif option == 0:
                 return
             elif option == 9:
