@@ -9,6 +9,8 @@ def test_registration_service():
     reg_service.add_registration(2, 1)
     reg_service.add_registration(2, 4)
     reg_service.add_registration(3, 3)
+    reg_service.add_registration(3, 1)
+    reg_service.add_registration(3, 2)
     assert reg_service.get_events_of_person(1) == [1, 2, 4]
     try:
         res = reg_service.get_events_of_person(4)
@@ -26,3 +28,6 @@ def test_registration_service():
         assert False
     except ValueError as e:
         assert str(e) == 'Persoana cu ID-ul 6 nu este inscrisa la evenimentul cu ID-ul 7'
+    assert reg_service.most_attending_persons() == [1, 3]
+    reg_service.add_registration(3, 10)
+    assert reg_service.most_attending_persons() == [3]

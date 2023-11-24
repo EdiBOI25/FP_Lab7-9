@@ -242,6 +242,13 @@ class UI:
         except Exception as e:
             print(e)
 
+    def __print_most_attending_persons(self):
+        try:
+            result = self.__registration_service.most_attending_persons()
+            print(result)
+        except Exception as e:
+            print(e)
+
     # main UI
     def __manage_person(self):
         while True:
@@ -321,6 +328,8 @@ class UI:
                 self.__print_events_of_person_sorted_description()
             elif option == 2:
                 self.__print_events_of_person_sorted_date()
+            elif option == 3:
+                self.__print_most_attending_persons()
             elif option == 0:
                 return
             else:

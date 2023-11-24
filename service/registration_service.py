@@ -1,5 +1,6 @@
 from repos.registration_repo import RegistrationRepo
 from utils.general_utils import sort_event_list_by_description, sort_event_list_by_date
+from collections import Counter
 
 
 class RegistrationService:
@@ -70,3 +71,19 @@ class RegistrationService:
         result = list(map(lambda evid: event_list.search_by_id(evid), result))
         # print(f'Lista de evenimente e: {result}')
         return sort_event_list_by_date(result)
+
+    def most_attending_persons(self):
+        per_id_list = list(map(lambda reg: reg.get_person(), self.__repo.get_all()))
+        if not per_id_list:
+            raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
+        freq_dict = {}
+        result = []
+        for num in per_id_list:
+            if num not in freq_dict:
+                freq_dict[num] = 0
+            freq_dict[num] += 1
+        max_freq = freq_dict[max(freq_dict)]
+        for num in freq_dict:
+            if freq_dict[num] == max_freq:
+                result.append(num)
+        return result
