@@ -42,8 +42,8 @@ class Menus:
     MENIU DE RAPOARTE:
     1. Afiseaza lista de evenimente la care participă o persoană ordonat alfabetic după descriere
     2. Afiseaza lista de evenimente la care participă o persoană ordonat dupa data
-    2. :))
-    3. :))
+    2. Afiseaza persoanele participante la cele mai multe evenimente
+    3. Afiseaza primele 20% evenimente cu cei mai mulți participanți (descriere, număr participanți)
     0. Inapoi
         '''
 

@@ -1,5 +1,5 @@
 from repos.registration_repo import RegistrationRepo
-from utils.general_utils import sort_event_list_by_description
+from utils.general_utils import sort_event_list_by_description, sort_event_list_by_date
 
 
 class RegistrationService:
@@ -63,3 +63,10 @@ class RegistrationService:
         result = list(map(lambda evid: event_list.search_by_id(evid), result))
         # print(f'Lista de evenimente e: {result}')
         return sort_event_list_by_description(result)
+
+    def get_events_sorted_by_date(self, person_id, event_list):
+        result = self.get_events_of_person(person_id)
+        # print(f'Lista initiala e: {result}')
+        result = list(map(lambda evid: event_list.search_by_id(evid), result))
+        # print(f'Lista de evenimente e: {result}')
+        return sort_event_list_by_date(result)

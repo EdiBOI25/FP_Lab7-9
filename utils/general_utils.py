@@ -27,3 +27,12 @@ def sort_event_list_by_description(this_list):
     # return sorted(this_list, key=lambda ev: ev.get_description())
     this_list.sort(key=lambda ev: ev.get_description())
     return this_list
+
+
+def sort_event_list_by_date(this_list):
+    for elem in this_list:
+        if not isinstance(elem, Event):
+            raise TypeError('Cel putin un element in lista nu este de tipul Eveniment.')
+    # return sorted(this_list, key=lambda ev: ev.get_description())
+    this_list.sort(key=lambda ev: ev.get_date())
+    return this_list

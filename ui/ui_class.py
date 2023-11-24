@@ -228,6 +228,20 @@ class UI:
         except Exception as e:
             print(e)
 
+    def __print_events_of_person_sorted_date(self):
+        person_id = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            result = self.__registration_service.get_events_sorted_by_date(person_id, self.__event_service)
+            # print(result)
+            for ev in result:
+                print(ev)
+        except TypeError as te:
+            print(te)
+        except ValueError as ve:
+            print(ve)
+        except Exception as e:
+            print(e)
+
     # main UI
     def __manage_person(self):
         while True:
@@ -305,6 +319,8 @@ class UI:
             option = self.__read_valid_int('Introdu optiunea: ')
             if option == 1:
                 self.__print_events_of_person_sorted_description()
+            elif option == 2:
+                self.__print_events_of_person_sorted_date()
             elif option == 0:
                 return
             else:
