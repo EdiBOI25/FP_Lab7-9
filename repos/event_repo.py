@@ -14,15 +14,26 @@ class EventRepository:
         return string
 
     def __len__(self):
+        """
+        :return: Returneaza lungimea listei
+        """
         return len(self.__event_list)
 
     def get_all(self):
+        """
+        :return: returneaza lista
+        """
         return self.__event_list
 
-    def __getitem__(self, index):
-        return self.__event_list[index]
+    # def __getitem__(self, index):
+    #     return self.__event_list[index]
 
     def is_id_in_list(self, idcode):
+        """
+        Verifica daca id-ul se afla in lista
+        :param idcode:
+        :return: True/False
+        """
         for event in self.__event_list:
             if event.get_id() == idcode:
                 return True

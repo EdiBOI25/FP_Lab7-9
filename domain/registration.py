@@ -1,15 +1,27 @@
 class Registration:
     def __init__(self, person_id: int, event_id: int):
+        """
+        Creeaza o noua inscriere
+        :param person_id:
+        :param event_id:
+        """
         self.__person_id = person_id
         self.__event_id = event_id
 
     def __eq__(self, other):
+        """
+        Defineste egalitatea intre doua inscrieri
+        :return: True/False
+        """
         if not isinstance(other, Registration):
             return False
         return (self.__person_id == other.get_person() and
                 self.__event_id == self.get_event())
 
     def __str__(self):
+        """
+        :return: Returneaza reprezentarea in string
+        """
         return f'Registration(PersonID: {self.__person_id}, EventID: {self.__event_id})'
 
     def get_person(self):

@@ -16,17 +16,40 @@ class PersonService:
         return str(self.__repo)
 
     def add_person(self, name, address):
+        """
+        Adauga persoana
+        :param name:
+        :param address:
+        :return:
+        """
         idcode = general_utils.generate_id(self.__repo.get_all())
         self.__repo.add_person(Person(idcode, name, address))
 
     def remove_person(self, idcode):
+        """
+        Sterge persoana
+        :param idcode:
+        :return:
+        """
         person = self.search_by_id(idcode)
         self.__repo.remove_person(person)
 
     def search_by_id(self, idcode):
+        """
+        Cauta persoana prin id
+        :param idcode:
+        :return: persoana cautata
+        """
         return self.__repo.search_person_by_id(idcode)
 
     def update_person(self, idcode, new_name, new_address):
+        """
+        Modifica datele unei persoane
+        :param idcode:
+        :param new_name:
+        :param new_address:
+        :return:
+        """
         self.__repo.update_person(idcode, new_name, new_address)
 
     @staticmethod

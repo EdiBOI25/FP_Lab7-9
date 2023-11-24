@@ -2,18 +2,29 @@ from datetime import date, time
 
 
 class Event:
-    def __init__(self, event_id: int, start_date: date, duration: time, description: str):
+    def __init__(self, event_id, start_date, duration, description):
+        """
+        Creeaza un nou eveniment
+        """
         self.__id = event_id
         self.__date = start_date
         self.__duration = duration
         self.__description = description
 
     def __eq__(self, other):
+        """
+        Defineste egalitatea intre doua evenimente
+        :param other: alt eveniment
+        :return: True/False
+        """
         if not isinstance(other, Event):
             return False
         return self.__id == other.get_id()
 
     def __str__(self):
+        """
+        :return: Reprezentarea unui Eveniment in string
+        """
         return f'Event(ID: {self.__id}, Data: {self.__date}, Durata: {self.__duration}, Descriere: {self.__description})'
 
     def get_id(self):

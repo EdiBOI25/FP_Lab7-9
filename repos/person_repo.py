@@ -14,15 +14,26 @@ class PersonRepository:
         return string
 
     def __len__(self):
+        """
+        :return: Returneaza lungimea listei
+        """
         return len(self.__person_list)
 
     def get_all(self):
+        """
+        :return: returneaza lista
+        """
         return self.__person_list
 
-    def __getitem__(self, index):
-        return self.__person_list[index]
+    # def __getitem__(self, index):
+    #     return self.__person_list[index]
 
     def is_id_in_list(self, idcode):
+        """
+        Verifica daca id-ul se afla in lista
+        :param idcode:
+        :return: True/False
+        """
         for person in self.__person_list:
             if person.get_id() == idcode:
                 return True
