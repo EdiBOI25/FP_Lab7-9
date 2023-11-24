@@ -17,5 +17,6 @@ def execute_all_tests():
     person_service_test.test_person_service()
     event_service_test.test_event_service()
     general_utils_test.test_generate_id()
+    general_utils_test.test_sort_event_list_by_description()
     registration_service_test.test_registration_service()
     print('Tests passed!')

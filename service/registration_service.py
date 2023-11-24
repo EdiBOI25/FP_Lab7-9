@@ -1,4 +1,5 @@
 from repos.registration_repo import RegistrationRepo
+from utils.general_utils import sort_event_list_by_description
 
 
 class RegistrationService:
@@ -18,6 +19,8 @@ class RegistrationService:
         :param event_id:
         :return:
         """
+        if self.search_registration(person_id, event_id):
+            raise ValueError('Inscrierea este deja inregistrata.')
         self.__repo.add_registration(person_id, event_id)
 
     def remove_registration(self, person_id, event_id):
@@ -28,6 +31,15 @@ class RegistrationService:
         :return:
         """
         self.__repo.remove_registration(person_id, event_id)
+
+    def search_registration(self, person_id, event_id):
+        """
+        Cauta inscrierea
+        :param person_id:
+        :param event_id:
+        :return:
+        """
+        return self.__repo.search_registration(person_id, event_id)
 
     def get_events_of_person(self, person_id):
         """
@@ -44,3 +56,10 @@ class RegistrationService:
         :return:
         """
         return self.__repo.get_persons_of_event(event_id)
+
+    def get_events_sorted_by_description(self, person_id, event_list):
+        result = self.get_events_of_person(person_id)
+        # print(f'Lista initiala e: {result}')
+        result = list(map(lambda evid: event_list.search_by_id(evid), result))
+        # print(f'Lista de evenimente e: {result}')
+        return sort_event_list_by_description(result)

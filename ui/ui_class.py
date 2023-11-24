@@ -25,6 +25,9 @@ class UI:
     def __print_registration_menu(self):
         print(self.__menus.get_registration_menu())
 
+    def __print_reports_menu(self):
+        print(self.__menus.get_reports_menu())
+
     # data validators
     @staticmethod
     def __read_valid_int(message):
@@ -112,7 +115,11 @@ class UI:
             if max_num > 0:
                 break
             print('Ai introdus un nr negativ. Mai incearca')
-        self.__person_service.add_random_persons(max_num)
+        try:
+            self.__person_service.add_random_persons(max_num)
+            print('Persoanele au fost adaugate cu succes!')
+        except Exception as e:
+            print(e)
 
     # event methods
     def __add_event(self):
@@ -164,7 +171,11 @@ class UI:
             if max_num > 0:
                 break
             print('Ai introdus un nr negativ. Mai incearca')
-        self.__event_service.add_random_events(max_num)
+        try:
+            self.__event_service.add_random_events(max_num)
+            print('Evenimentele au fost adaugate cu succes!')
+        except Exception as e:
+            print(e)
 
     # registration methods
     def __add_registration(self):
@@ -201,6 +212,20 @@ class UI:
             result = self.__registration_service.get_persons_of_event(event_id)
             print(f'La evenimentul cu ID-ul {event_id} sunt inscrise persoanele: {result}')
         except ValueError as e:
+            print(e)
+
+    def __print_events_of_person_sorted_description(self):
+        person_id = self.__read_valid_int('ID-ul persoanei: ')
+        try:
+            result = self.__registration_service.get_events_sorted_by_description(person_id, self.__event_service)
+            # print(result)
+            for ev in result:
+                print(ev)
+        except TypeError as te:
+            print(te)
+        except ValueError as ve:
+            print(ve)
+        except Exception as e:
             print(e)
 
     # main UI
@@ -275,7 +300,15 @@ class UI:
                 print('Optiune invalida')
 
     def __reports(self):
-        pass
+        while True:
+            self.__print_reports_menu()
+            option = self.__read_valid_int('Introdu optiunea: ')
+            if option == 1:
+                self.__print_events_of_person_sorted_description()
+            elif option == 0:
+                return
+            else:
+                print('Optiune invalida')
 
     def run(self):
         while True:
@@ -287,6 +320,8 @@ class UI:
                 self.__manage_event()
             elif option == 3:
                 self.__manage_register()
+            elif option == 4:
+                self.__reports()
             elif option == 9:
                 if self.__person_service.get_all():
                     print('Persoane:\n', self.__person_service)

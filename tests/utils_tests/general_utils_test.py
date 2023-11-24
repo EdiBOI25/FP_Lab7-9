@@ -21,3 +21,21 @@ def test_generate_id():
         assert new_id == 3
     except ValueError:
         assert False
+
+
+def test_sort_event_list_by_description():
+    new_list = [
+        Event(1, datetime.date(2020, 2, 2), datetime.time(2, 20), 'asdf'),
+        Event(2, datetime.date(2020, 2, 2), datetime.time(2, 20), 'absdf'),
+        Event(3, datetime.date(2020, 2, 2), datetime.time(2, 20), 'jsdf'),
+        Event(4, datetime.date(2020, 2, 2), datetime.time(2, 20), 'zsdf'),
+        Event(5, datetime.date(2020, 2, 2), datetime.time(2, 20), 'aasdf')
+    ]
+    result = sort_event_list_by_description(new_list)
+    result = list(map(lambda ident: ident.get_id(), result))
+    assert result == [5, 2, 1, 3, 4]
+    try:
+        sort_event_list_by_description([1,2,3])
+        assert False
+    except TypeError as e:
+        assert str(e) == 'Cel putin un element in lista nu este de tipul Eveniment.'

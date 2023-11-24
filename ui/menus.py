@@ -5,6 +5,7 @@ class Menus:
     1. Gestioneaza lista de persoane
     2. Gestioneaza lista de evenimente
     3. Gestioneaza inscrierile
+    4. Rapoarte
     9. Printeaza listele
     0. Iesi
     '''
@@ -37,6 +38,14 @@ class Menus:
     9. Afiseaza lista de inregistrari
     0. Inapoi
         '''
+        self.__reports_menu = '''
+    MENIU DE RAPOARTE:
+    1. Afiseaza lista de evenimente la care participă o persoană ordonat alfabetic după descriere
+    2. Afiseaza lista de evenimente la care participă o persoană ordonat dupa data
+    2. :))
+    3. :))
+    0. Inapoi
+        '''
 
     def get_main_menu(self):
         return self.__main_menu
@@ -49,3 +58,6 @@ class Menus:
 
     def get_registration_menu(self):
         return self.__registration_menu
+
+    def get_reports_menu(self):
+        return self.__reports_menu

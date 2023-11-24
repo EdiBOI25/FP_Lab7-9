@@ -55,10 +55,9 @@ class EventService:
         while True:
             try:
                 day = random.randint(1, 31)
-                break
+                return date(year, month, day)
             except ValueError:
                 pass
-        return date(year, month, day)
 
     @staticmethod
     def __random_time():

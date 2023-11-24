@@ -75,7 +75,7 @@ class RegistrationRepo:
 
     def add_registration(self, person_id, event_id):
         """
-        Adauga o noua inregistrare de tipul (persoana, eveniment)
+        Adauga o noua inscriere de tipul (persoana, eveniment)
         :param person_id:
         :param event_id:
         """
@@ -84,7 +84,7 @@ class RegistrationRepo:
 
     def remove_registration(self, person_id, event_id):
         """
-        Sterge o intregistrare
+        Sterge o inscriere
         :param person_id:
         :param event_id:
         :return:
@@ -94,3 +94,15 @@ class RegistrationRepo:
                 self.__registration_list.remove(reg)
                 return
         raise ValueError(f'Persoana cu ID-ul {person_id} nu este inscrisa la evenimentul cu ID-ul {event_id}')
+
+    def search_registration(self, person_id, event_id):
+        """
+        Cauta o inscriere
+        :param person_id:
+        :param event_id:
+        :return:
+        """
+        for reg in self.__registration_list:
+            if reg.get_event() == event_id and reg.get_person() == person_id:
+                return reg
+        return None
