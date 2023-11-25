@@ -87,3 +87,29 @@ class RegistrationService:
             if freq_dict[num] == max_freq:
                 result.append(num)
         return result
+
+    def most_attended_events(self):
+        ev_id_list = list(map(lambda reg: reg.get_event(), self.__repo.get_all()))
+        if not ev_id_list:
+            raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
+        freq_dict = {}
+        result = []
+        for num in ev_id_list:
+            if num not in freq_dict:
+                freq_dict[num] = 0
+            freq_dict[num] += 1
+        max_freq = freq_dict[max(freq_dict)]
+        for num in freq_dict:
+            if freq_dict[num] == max_freq:
+                result.append(num)
+        return result
+
+    def attended_event_counter(self):
+        ev_id_list = list(map(lambda reg: reg.get_event(), self.__repo.get_all()))
+        if not ev_id_list:
+            raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
+        result = []
+        for ev in ev_id_list:
+            if ev not in result:
+                result.append(ev)
+        return len(result)

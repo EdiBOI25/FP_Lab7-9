@@ -249,6 +249,20 @@ class UI:
         except Exception as e:
             print(e)
 
+    def __print_most_attended_events_20percent(self):
+        try:
+            sorted_ev_list = self.__registration_service.most_attended_events()
+            ev_num = self.__registration_service.attended_event_counter()
+            result = []
+            for i in range(ev_num // 5):
+                result.append(sorted_ev_list[i])
+            if not result:
+                print('Prea putine evenimente in lista pentru a afisa primele 20%')
+                return
+            print(result)
+        except Exception as e:
+            print(e)
+
     # main UI
     def __manage_person(self):
         while True:
@@ -330,6 +344,8 @@ class UI:
                 self.__print_events_of_person_sorted_date()
             elif option == 3:
                 self.__print_most_attending_persons()
+            elif option == 4:
+                self.__print_most_attended_events_20percent()
             elif option == 0:
                 return
             else:
