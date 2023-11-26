@@ -254,12 +254,13 @@ class UI:
             sorted_ev_list = self.__registration_service.most_attended_events()
             ev_num = self.__registration_service.attended_event_counter()
             result = []
-            for i in range(ev_num // 5):
-                result.append(sorted_ev_list[i])
+            for ev in sorted_ev_list[:ev_num//5]:
+                result.append(sorted_ev_list[ev])
             if not result:
                 print('Prea putine evenimente in lista pentru a afisa primele 20%')
                 return
-            print(result)
+            else:
+                print(result)
         except Exception as e:
             print(e)
 

@@ -73,6 +73,10 @@ class RegistrationService:
         return sort_event_list_by_date(result)
 
     def most_attending_persons(self):
+        """
+        Returneaza persoanele inscrise la cele mai multe evenimente
+        :return:
+        """
         per_id_list = list(map(lambda reg: reg.get_person(), self.__repo.get_all()))
         if not per_id_list:
             raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
@@ -80,15 +84,18 @@ class RegistrationService:
         result = []
         for num in per_id_list:
             if num not in freq_dict:
-                freq_dict[num] = 0
-            freq_dict[num] += 1
-        max_freq = freq_dict[max(freq_dict)]
+                freq_dict[num] = len(self.get_events_of_person(num))
+        max_freq = freq_dict[max(freq_dict, key=lambda per: freq_dict[per])]
         for num in freq_dict:
             if freq_dict[num] == max_freq:
                 result.append(num)
         return result
 
     def most_attended_events(self):
+        """
+        Returneaza evenimentele sortate dupa nr de prticipanti
+        :return:
+        """
         ev_id_list = list(map(lambda reg: reg.get_event(), self.__repo.get_all()))
         if not ev_id_list:
             raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
@@ -96,12 +103,10 @@ class RegistrationService:
         result = []
         for num in ev_id_list:
             if num not in freq_dict:
-                freq_dict[num] = 0
-            freq_dict[num] += 1
-        max_freq = freq_dict[max(freq_dict)]
+                freq_dict[num] = len(self.get_persons_of_event(num))
+        freq_dict = sorted(freq_dict, key=lambda ev: freq_dict[ev], reverse=True)
         for num in freq_dict:
-            if freq_dict[num] == max_freq:
-                result.append(num)
+            result.append(num)
         return result
 
     def attended_event_counter(self):

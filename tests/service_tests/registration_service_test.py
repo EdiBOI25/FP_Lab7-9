@@ -28,6 +28,11 @@ def test_registration_service():
         assert False
     except ValueError as e:
         assert str(e) == 'Persoana cu ID-ul 6 nu este inscrisa la evenimentul cu ID-ul 7'
-    assert reg_service.most_attending_persons() == [1, 3]
-    reg_service.add_registration(3, 10)
-    assert reg_service.most_attending_persons() == [3]
+    reg_service.add_registration(3, 20)
+    reg_service.add_registration(1, 20)
+    reg_service.add_registration(1, 21)
+    reg_service.add_registration(1, 22)
+    reg_service.add_registration(1, 23)
+    reg_service.add_registration(1, 24)
+    reg_service.add_registration(3, 21)
+    assert reg_service.most_attending_persons() == [1]
