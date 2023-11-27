@@ -1,10 +1,12 @@
 from validators.person_validator import *
+from repos.person_file_repo import PersonFileRepository
 
 
 class PersonRepository:
     def __init__(self):
         self.__person_list = []
         self.__validator = PersonValidator()
+        self.__file = PersonFileRepository('data/people.txt')
 
     def __str__(self):
         string = ''
