@@ -93,7 +93,7 @@ class RegistrationService:
 
     def most_attended_events(self):
         """
-        Returneaza evenimentele sortate dupa nr de prticipanti
+        Returneaza evenimentele sortate dupa nr de participanti
         :return:
         """
         ev_id_list = list(map(lambda reg: reg.get_event(), self.__repo.get_all()))
@@ -110,6 +110,10 @@ class RegistrationService:
         return result
 
     def attended_event_counter(self):
+        """
+        Returneaza numarul de evenimente care au macar o persoana inscrisa
+        :return:
+        """
         ev_id_list = list(map(lambda reg: reg.get_event(), self.__repo.get_all()))
         if not ev_id_list:
             raise ValueError('Nicio persoana nu s-a inscris la niciun eveniment')
