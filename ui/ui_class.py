@@ -116,7 +116,7 @@ class UI:
                 break
             print('Ai introdus un nr negativ. Mai incearca')
         try:
-            self.__person_service.add_random_persons(max_num)
+            self.__person_service.add_random_people(max_num)
             print('Persoanele au fost adaugate cu succes!')
         except Exception as e:
             print(e)
@@ -206,10 +206,10 @@ class UI:
         except ValueError as e:
             print(e)
 
-    def __find_persons_of_event(self):
+    def __find_people_of_event(self):
         event_id = self.__read_valid_int('ID-ul evenimentului: ')
         try:
-            result = self.__registration_service.get_persons_of_event(event_id)
+            result = self.__registration_service.get_people_of_event(event_id)
             print(f'La evenimentul cu ID-ul {event_id} sunt inscrise persoanele: {result}')
         except ValueError as e:
             print(e)
@@ -242,9 +242,9 @@ class UI:
         except Exception as e:
             print(e)
 
-    def __print_most_attending_persons(self):
+    def __print_most_attending_people(self):
         try:
-            result = self.__registration_service.most_attending_persons()
+            result = self.__registration_service.most_attending_people()
             print(result)
         except Exception as e:
             print(e)
@@ -324,7 +324,7 @@ class UI:
             elif option == 3:
                 self.__find_events_of_person()
             elif option == 4:
-                self.__find_persons_of_event()
+                self.__find_people_of_event()
             elif option == 0:
                 return
             elif option == 9:
@@ -344,7 +344,7 @@ class UI:
             elif option == 2:
                 self.__print_events_of_person_sorted_date()
             elif option == 3:
-                self.__print_most_attending_persons()
+                self.__print_most_attending_people()
             elif option == 4:
                 self.__print_most_attended_events_20percent()
             elif option == 0:

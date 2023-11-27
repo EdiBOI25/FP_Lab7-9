@@ -52,12 +52,12 @@ def test_person_service():
     except ValueError:
         assert False
 
-    # add_random_persons
+    # add_random_people
     random.seed(25)
-    person_service.add_random_persons(20)
+    person_service.add_random_people(20)
     assert len(person_service.get_all()) == 14
     assert person_service.search_by_id(10).get_name() == 'Jihmvayzkfibtsmgktza'
     random.seed(100)
-    person_service.add_random_persons(20)
+    person_service.add_random_people(20)
     assert person_service.search_by_id(15).get_address() == 'Ugkhjygfegllungmorizmfuudfatmeysfgfavhozumetrybthw 80'
     assert len(person_service.get_all()) == 19

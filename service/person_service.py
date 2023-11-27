@@ -76,10 +76,10 @@ class PersonService:
         address += str(random.randint(1, 100))
         return address
 
-    def add_random_persons(self, limit):
+    def add_random_people(self, limit):
         """
-        Adds a random number of persons with random names and addresses
-        :param limit: The max number of persons to add
+        Adds a random number of people with random names and addresses
+        :param limit: The max number of people to add
         :return:
         """
         num = random.randint(1, limit)

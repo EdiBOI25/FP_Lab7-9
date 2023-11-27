@@ -50,13 +50,13 @@ class RegistrationService:
         """
         return self.__repo.get_events_of_person(person_id)
 
-    def get_persons_of_event(self, event_id):
+    def get_people_of_event(self, event_id):
         """
         Returneaza persoanele inscrise la un eveniment
         :param event_id:
         :return:
         """
-        return self.__repo.get_persons_of_event(event_id)
+        return self.__repo.get_people_of_event(event_id)
 
     def get_events_sorted_by_description(self, person_id, event_list):
         result = self.get_events_of_person(person_id)
@@ -72,7 +72,7 @@ class RegistrationService:
         # print(f'Lista de evenimente e: {result}')
         return sort_event_list_by_date(result)
 
-    def most_attending_persons(self):
+    def most_attending_people(self):
         """
         Returneaza persoanele inscrise la cele mai multe evenimente
         :return:
@@ -103,7 +103,7 @@ class RegistrationService:
         result = []
         for num in ev_id_list:
             if num not in freq_dict:
-                freq_dict[num] = len(self.get_persons_of_event(num))
+                freq_dict[num] = len(self.get_people_of_event(num))
         freq_dict = sorted(freq_dict, key=lambda ev: freq_dict[ev], reverse=True)
         for num in freq_dict:
             result.append(num)
