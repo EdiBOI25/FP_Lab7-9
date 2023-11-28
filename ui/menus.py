@@ -44,6 +44,7 @@ class Menus:
     2. Afiseaza lista de evenimente la care participă o persoană ordonat dupa data
     3. Afiseaza persoanele participante la cele mai multe evenimente
     4. Afiseaza primele 20% evenimente cu cei mai mulți participanți (descriere, număr participanți)
+    5. Afiseaza primele 80% persoane care participa la cele mai putine evenimente (nume, numar evenimente)
     0. Inapoi
         '''
 

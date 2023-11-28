@@ -16,9 +16,9 @@ def test_registration_repo():
         assert False
     except ValueError as e:
         assert str(e) == 'Persoana cu ID-ul 4 nu s-a inscris la niciun eveniment'
-    assert reg_list.get_persons_of_event(4) == [1, 2]
+    assert reg_list.get_people_of_event(4) == [1, 2]
     try:
-        res = reg_list.get_persons_of_event(6)
+        res = reg_list.get_people_of_event(6)
         assert False
     except ValueError as e:
         assert str(e) == 'Evenimentul cu ID-ul 6 nu are persoane inscrise'

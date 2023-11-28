@@ -61,7 +61,7 @@ class RegistrationRepo:
                 result.append(reg.get_event())
         return result
 
-    def get_persons_of_event(self, event_id):
+    def get_people_of_event(self, event_id):
         """
         Returneaza persoanele care sunt inscrise la event_id
         """
