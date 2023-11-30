@@ -53,5 +53,3 @@ def test_registration_service():
         'Fwavxawkqmfmmxoggfts, participa la: 2 evenimente',
         'Flxsmwxdupkdvzpjhxyy, participa la: 5 evenimente'
     ]
-
-
