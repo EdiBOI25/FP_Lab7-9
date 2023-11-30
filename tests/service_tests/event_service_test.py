@@ -3,7 +3,9 @@ from datetime import date, time
 
 
 def test_event_service():
-    event_service = EventService()
+    event_file = 'tests/service_tests/events.txt'
+    open(event_file, 'w').close()
+    event_service = EventService(event_file)
     assert event_service.get_all() == []
     # add_event
     try:

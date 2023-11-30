@@ -3,7 +3,9 @@ from datetime import date, time
 
 
 def test_event_repo():
-    event_list = EventRepository()
+    events_file = 'tests/repo_tests/events.txt'
+    open(events_file, 'w').close()
+    event_list = EventRepository(events_file)
 
     untold = Event(1234, date(2020, 12, 8), time(1, 20), 'Best festival ever')
     # add_event test

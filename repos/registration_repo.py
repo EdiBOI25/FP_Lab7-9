@@ -1,9 +1,11 @@
 from domain.registration import Registration
+from repos.registration_file_repo import RegistrationFileRepository
 
 
 class RegistrationRepo:
     def __init__(self, reg_f):
-        self.__registration_list = []
+        self.__file = RegistrationFileRepository(reg_f)
+        self.__registration_list = self.__file.load_from_file()
 
     def __str__(self):
         string = ''
@@ -81,6 +83,7 @@ class RegistrationRepo:
         """
         new_registration = Registration(person_id, event_id)
         self.__registration_list.append(new_registration)
+        self.__update_file_list()
 
     def remove_registration(self, person_id, event_id):
         """
@@ -92,6 +95,7 @@ class RegistrationRepo:
         for reg in self.__registration_list:
             if reg.get_person() == person_id and reg.get_event() == event_id:
                 self.__registration_list.remove(reg)
+                self.__update_file_list()
                 return
         raise ValueError(f'Persoana cu ID-ul {person_id} nu este inscrisa la evenimentul cu ID-ul {event_id}')
 
@@ -106,3 +110,6 @@ class RegistrationRepo:
             if reg.get_event() == event_id and reg.get_person() == person_id:
                 return reg
         return None
+
+    def __update_file_list(self):
+        self.__file.store_to_file(self.__registration_list)

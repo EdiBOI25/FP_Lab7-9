@@ -17,7 +17,6 @@ class PersonFileRepository:
             while line != '':
                 params = line.split(',')
                 person = Person(int(params[0]), params[1], params[2])
-                print(person)
                 result.append(person)
                 line = file.readline().strip()
         return result

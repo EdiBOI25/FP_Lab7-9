@@ -2,7 +2,9 @@ from repos.registration_repo import RegistrationRepo, Registration
 
 
 def test_registration_repo():
-    reg_list = RegistrationRepo()
+    registrations_file = 'tests/repo_tests/registrations.txt'
+    open(registrations_file, 'w').close()
+    reg_list = RegistrationRepo(registrations_file)
     reg_list.add_registration(1, 1)
     reg_list.add_registration(1, 2)
     reg_list.add_registration(1, 4)

@@ -1,10 +1,12 @@
 from validators.event_validator import *
+from repos.event_file_repo import EventFileRepository
 
 
 class EventRepository:
     def __init__(self, ev_f):
-        self.__event_list = []
         self.__validator = EventValidator()
+        self.__file = EventFileRepository(ev_f)
+        self.__event_list = self.__file.load_from_file()
 
     def __str__(self):
         string = ''
@@ -48,6 +50,8 @@ class EventRepository:
         if self.is_id_in_list(event.get_id()):
             raise ValueError(f'Evenimentul cu id-ul {event.get_id()} se afla deja in lista')
         self.__event_list.append(event)
+        self.__update_file_list()
+
 
     def remove_event(self, event: Event):
         """
@@ -56,6 +60,7 @@ class EventRepository:
         """
         if event in self.__event_list:
             self.__event_list.remove(event)
+            self.__update_file_list()
             return
         raise ValueError(f'Evenimentul pe care vrei sa il stergi nu se afla in lista.')
 
@@ -85,6 +90,10 @@ class EventRepository:
                 self.__validator.validate_event(new_event)
                 index = self.__event_list.index(event)
                 self.__event_list[index] = new_event
+                self.__update_file_list()
                 return
 
         raise ValueError(f'Evenimentul cu id-ul {id_code} nu se afla in lista.')
+
+    def __update_file_list(self):
+        self.__file.store_to_file(self.__event_list)

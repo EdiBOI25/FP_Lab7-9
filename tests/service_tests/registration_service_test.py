@@ -5,9 +5,15 @@ import random
 
 
 def test_registration_service():
-    reg_service = RegistrationService()
-    per_service = PersonService()
-    ev_service = EventService()
+    person_file = 'tests/service_tests/people.txt'
+    open(person_file, 'w').close()
+    event_file = 'tests/service_tests/events.txt'
+    open(event_file, 'w').close()
+    reg_file = 'tests/service_tests/registrations.txt'
+    open(reg_file, 'w').close()
+    reg_service = RegistrationService(reg_file)
+    per_service = PersonService(person_file)
+    ev_service = EventService(event_file)
 
     per_service.add_random_people(50)
     ev_service.add_random_events(50)
