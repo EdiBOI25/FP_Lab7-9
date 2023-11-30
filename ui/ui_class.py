@@ -251,16 +251,21 @@ class UI:
 
     def __print_most_attended_events_20percent(self):
         try:
-            sorted_ev_list = self.__registration_service.most_attended_events()
-            ev_num = self.__registration_service.attended_event_counter()
-            result = []
-            for ev in sorted_ev_list[:ev_num//5]:
-                result.append(sorted_ev_list[ev])
-            if not result:
+            sorted_ev_list = self.__registration_service.most_attended_events_20percent(self.__event_service)
+            if not sorted_ev_list:
                 print('Prea putine evenimente in lista pentru a afisa primele 20%')
                 return
-            else:
-                print(result)
+            print(sorted_ev_list)
+        except Exception as e:
+            print(e)
+
+    def __print_least_attending_people_80percent(self):
+        try:
+            sorted_per_list = self.__registration_service.least_attending_people_80percent(self.__person_service)
+            if not sorted_per_list:
+                print('Prea putine evenimente in lista pentru a afisa primele 20%')
+                return
+            print(sorted_per_list)
         except Exception as e:
             print(e)
 
@@ -347,6 +352,8 @@ class UI:
                 self.__print_most_attending_people()
             elif option == 4:
                 self.__print_most_attended_events_20percent()
+            elif option == 5:
+                self.__print_least_attending_people_80percent()
             elif option == 0:
                 return
             else:

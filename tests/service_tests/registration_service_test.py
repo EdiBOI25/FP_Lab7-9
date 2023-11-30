@@ -1,8 +1,17 @@
 from service.registration_service import RegistrationService
+from service.person_service import PersonService
+from service.event_service import EventService
+import random
 
 
 def test_registration_service():
     reg_service = RegistrationService()
+    per_service = PersonService()
+    ev_service = EventService()
+
+    per_service.add_random_people(50)
+    ev_service.add_random_events(50)
+
     reg_service.add_registration(1, 1)
     reg_service.add_registration(1, 2)
     reg_service.add_registration(1, 4)
@@ -36,3 +45,11 @@ def test_registration_service():
     reg_service.add_registration(1, 24)
     reg_service.add_registration(3, 21)
     assert reg_service.most_attending_people() == [1]
+    # print(reg_service)
+    # print(per_service)
+    # print(ev_service)
+    assert reg_service.most_attended_events_20percent(ev_service) == ['bpbbtoptwgpbefrggyjecdqkyomyxw, Nr Participanti: 3']
+    assert reg_service.least_attending_people_80percent(per_service) == [
+        'Fwavxawkqmfmmxoggfts, participa la: 2 evenimente',
+        'Flxsmwxdupkdvzpjhxyy, participa la: 5 evenimente'
+    ]
