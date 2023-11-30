@@ -3,10 +3,10 @@ from repos.person_file_repo import PersonFileRepository
 
 
 class PersonRepository:
-    def __init__(self):
-        self.__person_list = []
+    def __init__(self, per_f):
         self.__validator = PersonValidator()
-        self.__file = PersonFileRepository('data/people.txt')
+        self.__file = PersonFileRepository(per_f)
+        self.__person_list = self.__file.load_from_file()
 
     def __str__(self):
         string = ''
@@ -50,6 +50,7 @@ class PersonRepository:
         if self.is_id_in_list(person.get_id()):
             raise ValueError(f'Persoana cu id-ul {person.get_id()} se afla deja in lista')
         self.__person_list.append(person)
+        self.__update_file_list()
 
     def remove_person(self, person: Person):
         """
@@ -58,6 +59,7 @@ class PersonRepository:
         """
         if person in self.__person_list:
             self.__person_list.remove(person)
+            self.__update_file_list()
             return
         raise ValueError(f'Persoana pe care vrei sa o stergi nu se afla in lista.')
 
@@ -86,6 +88,10 @@ class PersonRepository:
                 self.__validator.validate_person(new_person)
                 index = self.__person_list.index(person)
                 self.__person_list[index] = new_person
+                self.__update_file_list()
                 return
 
         raise ValueError(f'Persoana cu id-ul {id_code} nu se afla in lista.')
+
+    def __update_file_list(self):
+        self.__file.store_to_file(self.__person_list)

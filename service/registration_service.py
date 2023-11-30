@@ -3,8 +3,8 @@ from utils.general_utils import sort_event_list_by_description, sort_event_list_
 
 
 class RegistrationService:
-    def __init__(self):
-        self.__repo = RegistrationRepo()
+    def __init__(self, reg_f):
+        self.__repo = RegistrationRepo(reg_f)
 
     def get_all(self):
         return self.__repo.get_all()

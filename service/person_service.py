@@ -6,8 +6,8 @@ import random
 
 
 class PersonService:
-    def __init__(self):
-        self.__repo = PersonRepository()
+    def __init__(self, per_f):
+        self.__repo = PersonRepository(per_f)
 
     def get_all(self):
         return self.__repo.get_all()

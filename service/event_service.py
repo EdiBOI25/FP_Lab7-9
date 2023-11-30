@@ -7,8 +7,8 @@ from datetime import date, time
 
 
 class EventService:
-    def __init__(self):
-        self.__repo = EventRepository()
+    def __init__(self, ev_f):
+        self.__repo = EventRepository(ev_f)
 
     def get_all(self):
         return self.__repo.get_all()

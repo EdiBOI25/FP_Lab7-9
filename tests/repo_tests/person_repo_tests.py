@@ -2,7 +2,9 @@ from repos.person_repo import *
 
 
 def test_person_repo():
-    person_list = PersonRepository()
+    person_file = 'tests/repo_tests/people.txt'
+    open(person_file, 'w').close()
+    person_list = PersonRepository(person_file)
 
     bob = Person(1234, 'Bob', 'Somesului 12')
     # add_person test

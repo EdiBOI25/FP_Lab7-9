@@ -6,10 +6,10 @@ from datetime import date, time
 
 
 class UI:
-    def __init__(self):
-        self.__person_service = PersonService()
-        self.__event_service = EventService()
-        self.__registration_service = RegistrationService()
+    def __init__(self, per_f, ev_f, reg_f):
+        self.__person_service = PersonService(per_f)
+        self.__event_service = EventService(ev_f)
+        self.__registration_service = RegistrationService(reg_f)
         self.__menus = Menus()
 
     # menu printers
