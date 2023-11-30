@@ -11,18 +11,24 @@ class PersonFileRepository:
         Ia datele persoanelor din fisier
         :return: lista de persoane
         """
-        try:
-            file = open(self.__file_name, 'r')
-        except IOError as e:
-            print(e)
-            return []
-        line = file.readline().strip()
-        result = []
-        while line != '':
-            params = line.split(',')
-            person = Person(int(params[0]), params[1], params[2])
-            print(person)
-            result.append(person)
+        with open(self.__file_name, 'r') as file:
             line = file.readline().strip()
-        file.close()
+            result = []
+            while line != '':
+                params = line.split(',')
+                person = Person(int(params[0]), params[1], params[2])
+                print(person)
+                result.append(person)
+                line = file.readline().strip()
         return result
+
+    def store_to_file(self, per_list):
+        """
+        Stocheaza lista transmisa in fisier
+        :param per_list:
+        :return:
+        """
+        with open(self.__file_name, 'w') as file:
+            for per in per_list:
+                str_per = str(per.get_id()) + ',' + per.get_name() + ',' + per.get_address() + '\n'
+                file.write(str_per)

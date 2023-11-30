@@ -2,7 +2,9 @@ from service.person_service import *
 
 
 def test_person_service():
-    person_service = PersonService()
+    person_file = 'tests/service_tests/people.txt'
+    open(person_file, 'w').close()
+    person_service = PersonService(person_file)
     # add_person
     assert person_service.get_all() == []
     try:

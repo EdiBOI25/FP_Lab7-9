@@ -2,7 +2,7 @@ from validators.event_validator import *
 
 
 class EventRepository:
-    def __init__(self):
+    def __init__(self, ev_f):
         self.__event_list = []
         self.__validator = EventValidator()
 

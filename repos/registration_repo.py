@@ -2,7 +2,7 @@ from domain.registration import Registration
 
 
 class RegistrationRepo:
-    def __init__(self):
+    def __init__(self, reg_f):
         self.__registration_list = []
 
     def __str__(self):
