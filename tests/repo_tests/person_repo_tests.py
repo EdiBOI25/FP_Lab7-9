@@ -3,6 +3,23 @@ from repos.person_repo import *
 
 def test_person_repo():
     person_file = 'tests/repo_tests/people.txt'
+    try:
+        PersonFileRepository('text.txt').load_from_file()
+        assert False
+    except FileNotFoundError as e:
+        assert str(e) == '[Errno 2] No such file or directory: \'text.txt\''
+    open(person_file, 'w').close()
+    assert PersonFileRepository(person_file).load_from_file() == []
+    lst = [
+        Person(1234, 'Bob', 'Somesului 12'),
+        Person(2525, 'nanami', 'japan')
+    ]
+    PersonFileRepository(person_file).store_to_file(lst)
+    assert PersonFileRepository(person_file).load_from_file() == [
+        Person(1234, 'Bob', 'Somesului 12'),
+        Person(2525, 'nanami', 'japan')
+    ]
+
     open(person_file, 'w').close()
     person_list = PersonRepository(person_file)
 

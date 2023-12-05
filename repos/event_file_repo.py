@@ -9,17 +9,17 @@ class EventFileRepository:
 
     @staticmethod
     def __date_from_str(string):
-        splitted_str = string.split('-')
-        year = int(splitted_str[0])
-        month = int(splitted_str[1])
-        day = int(splitted_str[2])
+        split_str = string.split('-')
+        year = int(split_str[0])
+        month = int(split_str[1])
+        day = int(split_str[2])
         return date(year, month, day)
 
     @staticmethod
     def __time_from_str(string):
-        splitted_str = string.split(':')
-        hours = int(splitted_str[0])
-        minutes = int(splitted_str[1])
+        split_str = string.split(':')
+        hours = int(split_str[0])
+        minutes = int(split_str[1])
         return time(hours, minutes)
 
     def load_from_file(self):

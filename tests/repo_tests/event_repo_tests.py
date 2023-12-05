@@ -4,6 +4,23 @@ from datetime import date, time
 
 def test_event_repo():
     events_file = 'tests/repo_tests/events.txt'
+    try:
+        EventFileRepository('text.txt').load_from_file()
+        assert False
+    except FileNotFoundError as e:
+        assert str(e) == '[Errno 2] No such file or directory: \'text.txt\''
+    open(events_file, 'w').close()
+    assert EventFileRepository(events_file).load_from_file() == []
+    lst = [
+        Event(1234, date(2020, 12, 8), time(1, 20), 'Best festival ever'),
+        Event(2525, date(2020, 12, 8), time(1, 20), 'Best festival ever')
+    ]
+    EventFileRepository(events_file).store_to_file(lst)
+    assert EventFileRepository(events_file).load_from_file() == [
+        Event(1234, date(2020, 12, 8), time(1, 20), 'Best festival ever'),
+        Event(2525, date(2020, 12, 8), time(1, 20), 'Best festival ever')
+    ]
+    
     open(events_file, 'w').close()
     event_list = EventRepository(events_file)
 

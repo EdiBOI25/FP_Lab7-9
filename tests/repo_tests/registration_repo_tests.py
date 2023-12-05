@@ -1,8 +1,25 @@
-from repos.registration_repo import RegistrationRepo, Registration
+from repos.registration_repo import RegistrationRepo, RegistrationFileRepository, Registration
 
 
 def test_registration_repo():
     registrations_file = 'tests/repo_tests/registrations.txt'
+    try:
+        RegistrationFileRepository('text.txt').load_from_file()
+        assert False
+    except FileNotFoundError as e:
+        assert str(e) == '[Errno 2] No such file or directory: \'text.txt\''
+    open(registrations_file, 'w').close()
+    assert RegistrationFileRepository(registrations_file).load_from_file() == []
+    lst = [
+        Registration(1, 2),
+        Registration(3, 4)
+    ]
+    RegistrationFileRepository(registrations_file).store_to_file(lst)
+    assert RegistrationFileRepository(registrations_file).load_from_file() == [
+        Registration(1, 2),
+        Registration(3, 4)
+    ]
+
     open(registrations_file, 'w').close()
     reg_list = RegistrationRepo(registrations_file)
     reg_list.add_registration(1, 1)
