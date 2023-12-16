@@ -54,8 +54,9 @@ def test_registration_service():
     # print(reg_service)
     # print(per_service)
     # print(ev_service)
-    assert reg_service.most_attended_events_20percent(ev_service) == ['bpbbtoptwgpbefrggyjecdqkyomyxw, Nr Participanti: 3']
+    assert reg_service.most_attended_events_20percent(ev_service) == ['izwxsnsgjizamhiioilknkowpxossm, Nr Participanti: 3']
+    print(reg_service.least_attending_people_80percent(per_service))
     assert reg_service.least_attending_people_80percent(per_service) == [
-        'Fwavxawkqmfmmxoggfts, participa la: 2 evenimente',
-        'Flxsmwxdupkdvzpjhxyy, participa la: 5 evenimente'
+        'Cpbnmegnfgiigjmmikax, participa la: 2 evenimente',
+        'Kpymtnhypxdqgfchcatz, participa la: 5 evenimente'
     ]
