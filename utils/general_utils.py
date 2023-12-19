@@ -36,3 +36,16 @@ def sort_event_list_by_date(this_list):
     # return sorted(this_list, key=lambda ev: ev.get_description())
     this_list.sort(key=lambda ev: ev.get_date())
     return this_list
+
+
+def bubble_sort(lst, key=lambda x: x, reverse=False, cmp=lambda x, y: x < y):
+    result = list(lst)
+    done = False
+    while not done:
+        done = True
+        for i in range(len(result) - 1):
+            if ((cmp(key(result[i + 1]), key(result[i])) and reverse == False) or
+                    (not cmp(key(result[i + 1]), key(result[i])) and reverse == True)):
+                result[i], result[i + 1] = result[i + 1], result[i]
+                done = False
+    return result

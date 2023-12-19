@@ -5,7 +5,7 @@ import datetime
 
 
 def test_generate_id():
-    random_list = [1,2,'lol', Person(1, 'ed', 'brasov')]
+    random_list = [1, 2, 'lol', Person(1, 'ed', 'brasov')]
     try:
         new_id = generate_id(random_list)
         assert False
@@ -42,3 +42,16 @@ def test_sort_event_list_by_description():
         assert False
     except TypeError as e:
         assert str(e) == 'Cel putin un element in lista nu este de tipul Eveniment.'
+
+
+def test_bubble_sort():
+    assert bubble_sort([4, 3, 2, 1]) == [1, 2, 3, 4]
+    assert bubble_sort([1, 2, 3, 4], reverse=True) == [4, 3, 2, 1]
+    fructe = {'mere': 30, 'pere': 20, 'afine': 10}
+    assert bubble_sort(fructe, key=lambda x: fructe[x]) == ['afine', 'pere', 'mere']
+    assert bubble_sort(fructe, key=lambda x: fructe[x], reverse=True) == ['mere', 'pere', 'afine']
+    fructe = {'mere': 10, 'pere': 20, 'afine': 30}
+    assert bubble_sort(fructe, key=lambda x: fructe[x], reverse=True) == ['afine', 'pere', 'mere']
+    assert bubble_sort(['zz', 'aa', 'ce'], reverse=True) == ['zz', 'ce', 'aa']
+    assert bubble_sort([4, 3, 2, 1], cmp=lambda x, y: x < y) == [1, 2, 3, 4]
+    assert bubble_sort([1, 2, 3, 4], cmp=lambda x, y: x > y) == [4, 3, 2, 1]
