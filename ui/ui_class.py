@@ -29,13 +29,20 @@ class UI:
         print(self.__menus.get_reports_menu())
 
     # data validators
-    @staticmethod
-    def __read_valid_int(message):
-        while True:
-            try:
-                return int(input(message))
-            except ValueError:
-                print('Valoarea introdusa nu e numar intreg. Incearca din nou')
+    # @staticmethod
+    # def __read_valid_int(message):
+    #     while True:
+    #         try:
+    #             return int(input(message))
+    #         except ValueError:
+    #             print('Valoarea introdusa nu e numar intreg. Incearca din nou')
+    def __read_valid_int(self, message):
+        try:
+            num = int(input(message))
+            return num
+        except ValueError:
+            print('Valoarea introdusa nu e numar intreg. Incearca din nou')
+            self.__read_valid_int(message)
 
     @staticmethod
     def __read_nonempty_string(message):
@@ -48,15 +55,24 @@ class UI:
             except ValueError:
                 print('String-ul nu poate fi gol')
 
+    # def __read_valid_date(self):
+    #     while True:
+    #         try:
+    #             year = self.__read_valid_int('An: ')
+    #             month = self.__read_valid_int('Luna: ')
+    #             day = self.__read_valid_int('Zi: ')
+    #             return date(year, month, day)
+    #         except ValueError as e:
+    #             print(str(e))
     def __read_valid_date(self):
-        while True:
-            try:
-                year = self.__read_valid_int('An: ')
-                month = self.__read_valid_int('Luna: ')
-                day = self.__read_valid_int('Zi: ')
-                return date(year, month, day)
-            except ValueError as e:
-                print(str(e))
+        try:
+            year = self.__read_valid_int('An: ')
+            month = self.__read_valid_int('Luna: ')
+            day = self.__read_valid_int('Zi: ')
+            return date(year, month, day)
+        except ValueError as e:
+            print(e)
+            self.__read_valid_date()
 
     def __read_valid_time(self):
         while True:
