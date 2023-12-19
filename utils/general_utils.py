@@ -62,7 +62,6 @@ def shell_sort(lst, key=lambda x: x, reverse=False, cmp=lambda x, y: x < y):
         for i in range(interval, length):
             temp = result[i]
             j = i
-            # while j >= interval and result[j - interval] > temp:
             while j >= interval and not cmp(key(result[j - interval]), key(temp)):
                 result[j] = result[j - interval]
                 j -= interval

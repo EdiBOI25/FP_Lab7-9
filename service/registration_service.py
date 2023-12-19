@@ -133,7 +133,7 @@ class RegistrationService:
         Returneaza persoanele sortate dupa nr de evenimente la care sunt inscrise
         :return:
 
-        T(n) = n + 2n + n + n*log(n) + n = n * (5 + log(n)) ~ n * log(n)
+        T(n) = n + 2n + n + n^2 + n = n^2 + 5 * n ~ n^2
         """
         per_id_list = list(map(lambda reg: reg.get_person(), self.__repo.get_all()))
         per_num = self.attending_people_counter()

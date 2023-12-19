@@ -42,7 +42,7 @@ class UI:
             return num
         except ValueError:
             print('Valoarea introdusa nu e numar intreg. Incearca din nou')
-            self.__read_valid_int(message)
+            return self.__read_valid_int(message)
 
     @staticmethod
     def __read_nonempty_string(message):
@@ -72,7 +72,7 @@ class UI:
             return date(year, month, day)
         except ValueError as e:
             print(e)
-            self.__read_valid_date()
+            return self.__read_valid_date()
 
     def __read_valid_time(self):
         while True:
