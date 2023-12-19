@@ -1,5 +1,5 @@
 from repos.registration_repo import RegistrationRepo
-from utils.general_utils import sort_event_list_by_description, sort_event_list_by_date
+from utils.general_utils import sort_event_list_by_description, sort_event_list_by_date, bubble_sort, shell_sort
 
 
 class RegistrationService:
@@ -108,7 +108,8 @@ class RegistrationService:
             if num not in freq_dict:
                 freq_dict[num] = len(self.get_people_of_event(num))
         # lista sortata cu id-urile
-        freq_list = sorted(freq_dict, key=lambda ev: freq_dict[ev], reverse=True)
+        # freq_list = sorted(freq_dict, key=lambda ev: freq_dict[ev], reverse=True)
+        freq_list = shell_sort(freq_dict, key=lambda ev: freq_dict[ev], reverse=True)
         for num in freq_list:
             result.append(f'{event_list.search_by_id(num).get_description()}, Nr Participanti: {freq_dict[num]}')
         return result[:ev_num//5]
@@ -143,7 +144,8 @@ class RegistrationService:
         for num in per_id_list:
             if num not in freq_dict:
                 freq_dict[num] = len(self.get_events_of_person(num))
-        freq_list = sorted(freq_dict, key=lambda per: freq_dict[per], reverse=False)
+        # freq_list = sorted(freq_dict, key=lambda per: freq_dict[per], reverse=False)
+        freq_list = bubble_sort(freq_dict, key=lambda per: freq_dict[per], reverse=False)
         for num in freq_list:
             result.append(f'{person_list.search_by_id(num).get_name()}, participa la: {freq_dict[num]} evenimente')
         return result[:per_num * 4 // 5]

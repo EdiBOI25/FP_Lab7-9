@@ -39,13 +39,33 @@ def sort_event_list_by_date(this_list):
 
 
 def bubble_sort(lst, key=lambda x: x, reverse=False, cmp=lambda x, y: x < y):
+    if reverse == True:
+        cmp = lambda x, y: x > y
     result = list(lst)
     done = False
     while not done:
         done = True
         for i in range(len(result) - 1):
-            if ((cmp(key(result[i + 1]), key(result[i])) and reverse == False) or
-                    (not cmp(key(result[i + 1]), key(result[i])) and reverse == True)):
+            if cmp(key(result[i + 1]), key(result[i])):
                 result[i], result[i + 1] = result[i + 1], result[i]
                 done = False
+    return result
+
+
+def shell_sort(lst, key=lambda x: x, reverse=False, cmp=lambda x, y: x < y):
+    if reverse == True:
+        cmp = lambda x, y: x > y
+    result = list(lst)
+    length = len(result)
+    interval = length // 2
+    while interval > 0:
+        for i in range(interval, length):
+            temp = result[i]
+            j = i
+            # while j >= interval and result[j - interval] > temp:
+            while j >= interval and not cmp(key(result[j - interval]), key(temp)):
+                result[j] = result[j - interval]
+                j -= interval
+            result[j] = temp
+        interval //= 2
     return result

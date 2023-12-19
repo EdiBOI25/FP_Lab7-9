@@ -55,3 +55,16 @@ def test_bubble_sort():
     assert bubble_sort(['zz', 'aa', 'ce'], reverse=True) == ['zz', 'ce', 'aa']
     assert bubble_sort([4, 3, 2, 1], cmp=lambda x, y: x < y) == [1, 2, 3, 4]
     assert bubble_sort([1, 2, 3, 4], cmp=lambda x, y: x > y) == [4, 3, 2, 1]
+
+
+def test_shell_sort():
+    assert shell_sort([4, 3, 2, 1]) == [1, 2, 3, 4]
+    assert shell_sort([1, 2, 3, 4], reverse=True) == [4, 3, 2, 1]
+    fructe = {'mere': 30, 'pere': 20, 'afine': 10}
+    assert shell_sort(fructe, key=lambda x: fructe[x]) == ['afine', 'pere', 'mere']
+    assert shell_sort(fructe, key=lambda x: fructe[x], reverse=True) == ['mere', 'pere', 'afine']
+    fructe = {'mere': 10, 'pere': 20, 'afine': 30}
+    assert shell_sort(fructe, key=lambda x: fructe[x], reverse=True) == ['afine', 'pere', 'mere']
+    assert shell_sort(['zz', 'aa', 'ce'], reverse=True) == ['zz', 'ce', 'aa']
+    assert shell_sort([4, 3, 2, 1], cmp=lambda x, y: x < y) == [1, 2, 3, 4]
+    assert shell_sort([1, 2, 3, 4], cmp=lambda x, y: x > y) == [4, 3, 2, 1]
